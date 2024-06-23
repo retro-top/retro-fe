@@ -2,32 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+* {
+  scroll-behavior: smooth;
+  /* background: ; */
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+
+  body {
+    @apply overflow-hidden
+  }
+
+  main {
+    @apply overflow-y-scroll h-[calc(100vh-3.5rem)] p-4 pt-0
+  }
+
+  button {
+    @apply p-2 px-4 text-white bg-emerald-800 hover:bg-emerald-900 rounded shadow transition
+  }
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-select: none;
 }
