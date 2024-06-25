@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { IconType } from "react-icons";
 
 interface NavButtonProps {
   icon: React.ReactNode;
@@ -11,27 +12,28 @@ interface NavButtonProps {
   href: string;
 }
 
-const NavButton = (game: NavButtonProps) => {
-  const Icon = () => game.icon;
-  const samePath = usePathname() === game.href;
+const NavButton: React.FC<NavButtonProps> = ({ icon, name, href }) => {
+  const pathname = usePathname();
+  const isActive = pathname === href;
+
+  const Icon = () => icon
+
   return (
-    <div
+    <motion.div
       className={`rounded-lg ${
-        samePath ? "bg-emerald-900" : "hover:bg-emerald-900"
+        isActive ? "bg-emerald-900" : "hover:bg-emerald-900"
       }`}
+      whileHover={{ x: 5 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
-      <Link href={game.href}>
-        <motion.div
-          className={`p-2 flex gap-2 items-center select-none text-sm md:text-base`}
-          whileHover={{ x: 5, z: 50 }}
-          transition={{ delay: 0.1 }}
-        >
+      <Link href={href}>
+        <div className="p-2 flex gap-2 items-center select-none text-sm md:text-base">
           <Icon />
-          {game.name}
-        </motion.div>
+          <span>{name}</span>
+        </div>
       </Link>
-    </div>
+    </motion.div>
   );
 };
 
-export default NavButton;
+export default React.memo(NavButton);
