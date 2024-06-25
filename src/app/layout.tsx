@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Titillium_Web } from "next/font/google";
+import { Titillium_Web } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import TopNavBar from "@/components/Navbar/TopNavBar";
+import RootLayoutProvider from "@/providers/RootLayoutProvider";
 
 const font = Titillium_Web({
   subsets: ["latin"],
@@ -26,9 +27,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${font.className} bg-emerald-700`}>
         {google_analytics_id && <GoogleAnalytics gaId={google_analytics_id} />}
-        <TopNavBar />
-        <Sidebar />
-        {children}
+        <RootLayoutProvider>
+          <TopNavBar />
+          <Sidebar />
+          {children}
+        </RootLayoutProvider>
       </body>
     </html>
   );

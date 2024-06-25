@@ -23,6 +23,14 @@
   button {
     @apply p-2 px-4 text-white bg-emerald-800 hover:bg-emerald-900 rounded shadow transition
   }
+
+  label {
+    @apply text-sm text-gray-500 select-none
+  }
+
+  div {
+    user-select: none;
+  }
 }
 
 * {
