@@ -43,7 +43,8 @@ const usePlay = (game: ResourceType) => {
       await aptos.waitForTransaction({ transactionHash: response.hash });
 
       setAccountHasList(true);
-      console.log(response);
+      // console.log(response);
+      return response;
     } catch (error) {
       console.error("Sign And Submit Error", error);
     }

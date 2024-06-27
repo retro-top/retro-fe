@@ -13,19 +13,19 @@
   }
 
   body {
-    @apply overflow-hidden
+    @apply overflow-hidden;
   }
 
   main {
-    @apply overflow-y-scroll h-[calc(100vh-3.5rem)] p-4 pt-0
+    @apply overflow-y-scroll h-[calc(100vh-3.5rem)] p-4 pt-0;
   }
 
   button {
-    @apply p-2 px-4 text-white bg-emerald-800 hover:bg-emerald-900 rounded shadow transition
+    @apply p-2 px-4 text-white bg-emerald-800 hover:bg-emerald-900 rounded shadow transition;
   }
 
   label {
-    @apply text-sm text-gray-500 select-none
+    @apply text-sm text-gray-500 select-none;
   }
 
   div {
@@ -43,4 +43,33 @@ img {
   -moz-user-drag: none;
   -o-user-drag: none;
   user-select: none;
+}
+
+.wallet-selector-modal {
+}
+.wallet-selector-icon {
+}
+.wallet-selector-text {
+}
+.wallet-menu-wrapper {
+}
+.wallet-name-wrapper {
+}
+.wallet-connect-button {
+}
+.wallet-connect-install {
+}
+.wallet-button {
+}
+.wallet-modal-title {
+}
+.aptos-connect-button {
+}
+.aptos-connect-privacy-policy-wrapper {
+}
+.aptos-connect-privacy-policy-text {
+}
+.aptos-connect-privacy-policy-link {
+}
+.aptos-connect-powered-by {
 }
