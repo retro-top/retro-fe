@@ -18,7 +18,7 @@ const Sidebar: React.FC = () => {
     <>
       {navbars.map((navbar, navbarIndex: number) => (
         <div
-          className="p-4 rounded-lg shadow-lg bg-emerald-800 min-w-40 md:min-w-60 mb-4"
+          className="p-4 rounded-lg shadow-lg bg-gray-800 min-w-40 md:min-w-60 mb-4"
           key={navbarIndex}
         >
           <h1 className="text-sm font-semibold pb-2 select-none">
@@ -34,9 +34,19 @@ const Sidebar: React.FC = () => {
                 key={index}
               />
 })}
+
           </div>
         </div>
       ))}
+  <div className="p-4 rounded-lg shadow-lg bg-gray-800 min-w-40 md:min-w-60 mb-4">
+        <div className="grid grid-cols-2 gap-4">
+          <NavButton  name="X Handle" href="#x-handle" />
+          <NavButton  name="Discord" href="#discord" />
+          <NavButton  name="Terms and Conditions" href="#terms-and-conditions" />
+          <NavButton  name="Support" href="#support" />
+        </div>
+      </div>
+
     </>
   ), []);
 
@@ -47,7 +57,7 @@ const Sidebar: React.FC = () => {
       </nav>
 
       <button
-        className="md:hidden fixed bottom-4 right-4 bg-emerald-600 text-white p-3 rounded-full shadow-lg z-50"
+        className="md:hidden fixed bottom-4 right-4 bg-gray-600 text-white p-3 rounded-full shadow-lg z-50"
         onClick={toggleDrawer}
       >
         <FiMenu size={24} />

@@ -6,7 +6,7 @@ import { WalletSelector } from "@aptos-labs/wallet-adapter-ant-design";
 
 const TopNavBar = () => {
   return (
-    <nav className='flex items-center justify-between p-2 px-4'>
+    <nav className='flex bg-gray-900 items-center justify-between p-2 px-4'>
       <div className='text-white'>Logo</div>
       <WalletSelector />
     </nav>

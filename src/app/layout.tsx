@@ -25,7 +25,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${font.className} bg-emerald-700`}>
+      <body className={`${font.className} bg-gray-900`}>
         {google_analytics_id && <GoogleAnalytics gaId={google_analytics_id} />}
         <RootLayoutProvider>
           <TopNavBar />
