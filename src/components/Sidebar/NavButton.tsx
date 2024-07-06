@@ -28,9 +28,9 @@ const NavButton: React.FC<NavButtonProps> = ({ icon, name, href }) => {
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
       >
         <Link href={href}>
-          <div className="p-2 flex gap-2 items-center select-none text-sm md:text-base">
+          <div className="p-2 flex gap-2 items-center select-none md:text-base">
             <Icon />
-            <span>{name}</span>
+            <span className="text-sm">{name}</span>
           </div>
         </Link>
       </motion.div>

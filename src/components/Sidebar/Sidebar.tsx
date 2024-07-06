@@ -19,7 +19,7 @@ const Sidebar: React.FC = () => {
       <>
         {navbars.map((navbar, navbarIndex: number) => (
           <div
-            className="p-4 rounded-lg shadow-lg bg-gray-800 mb-4"
+            className="p-4 border border-gray-800 border-t-0"
             key={navbarIndex}
           >
             <h1 className="text-sm font-semibold pb-2 select-none">
@@ -39,7 +39,7 @@ const Sidebar: React.FC = () => {
             </div>
           </div>
         ))}
-        <div className="p-4 rounded-lg shadow-lg bg-gray-800 min-w-40 md:min-w-60 mb-4">
+        <div className="p-4 border border-gray-800 border-t-0">
           <div className="grid grid-cols-2 gap-4">
             <NavButton name="X Handle" href="#x-handle" />
             <NavButton name="Discord" href="#discord" />
@@ -57,7 +57,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      <nav className="hidden md:block float-left p-4 pt-0 text-white space-y-4 h-[calc(100vh-3.5rem)] max-w-[300px]">
+      <nav className="hidden md:block float-left pt-0 text-white h-[calc(100vh-3.5rem)] max-w-[250px]">
         {renderNavContent()}
       </nav>
 
