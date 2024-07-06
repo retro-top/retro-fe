@@ -10,35 +10,43 @@ const games = [
     icon: <PiCoinsDuotone size={16} />,
     href: "/coin-flip",
     active: true,
-    id: "coin_flip"
+    id: "coin_flip",
   },
   {
     name: "Dice Roll",
     icon: <GiPerspectiveDiceOne size={16} />,
     href: "/dice-roll",
     active: true,
-    id: "dice_roll"
+    id: "dice_roll",
+    startDate: "",
+    endDate: "",
   },
   {
     name: "Fortune Wheel",
     icon: <GiCartwheel />,
     href: "/fortune-wheel",
     active: true,
-    id: "fortune_wheel"
+    id: "fortune_wheel",
+    startDate: "",
+    endDate: "",
   },
   {
     name: "NFT Spin",
     icon: <PiSpinnerBold />,
     href: "/nft-spin",
     active: false,
-    id: "nft_spin"
+    id: "nft_spin",
+    startDate: "",
+    endDate: "",
   },
   {
     name: "Plinko",
     icon: <GoDotFill />,
     href: "/plinko",
     active: true,
-    id: "plinko"
+    id: "plinko",
+    startDate: "",
+    endDate: "",
   },
 ];
 

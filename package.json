@@ -13,7 +13,6 @@
     "@aptos-labs/wallet-adapter-ant-design": "^2.6.1",
     "@aptos-labs/wallet-adapter-react": "^3.4.1",
     "@heroicons/react": "^2.1.4",
-    "@material-tailwind/react": "^2.1.9",
     "@next/third-parties": "^14.2.4",
     "framer-motion": "^11.2.11",
     "next": "14.2.4",

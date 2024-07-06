@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useCallback } from "react";
 import { FiMenu } from "react-icons/fi";
@@ -11,48 +11,53 @@ const Sidebar: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
   const toggleDrawer = useCallback(() => {
-    setIsDrawerOpen(prev => !prev);
+    setIsDrawerOpen((prev) => !prev);
   }, []);
 
-  const renderNavContent = useCallback(() => (
-    <>
-      {navbars.map((navbar, navbarIndex: number) => (
-        <div
-          className="p-4 rounded-lg shadow-lg bg-gray-800 min-w-40 md:min-w-60 mb-4"
-          key={navbarIndex}
-        >
-          <h1 className="text-sm font-semibold pb-2 select-none">
-            {navbar.heading}
-          </h1>
-          <div className="space-y-1">
-            {navbar.options.map((item, index) => {
-              // const Icon = 
-              return <NavButton
-                icon={item.icon}
-                name={item.name}
-                href={item.href}
-                key={index}
-              />
-})}
-
+  const renderNavContent = useCallback(
+    () => (
+      <>
+        {navbars.map((navbar, navbarIndex: number) => (
+          <div
+            className="p-4 rounded-lg shadow-lg bg-gray-800 mb-4"
+            key={navbarIndex}
+          >
+            <h1 className="text-sm font-semibold pb-2 select-none">
+              {navbar.heading}
+            </h1>
+            <div className="space-y-1">
+              {navbar.options.map((item, index) => {
+                return (
+                  <NavButton
+                    icon={item.icon}
+                    name={item.name}
+                    href={item.href}
+                    key={index}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        ))}
+        <div className="p-4 rounded-lg shadow-lg bg-gray-800 min-w-40 md:min-w-60 mb-4">
+          <div className="grid grid-cols-2 gap-4">
+            <NavButton name="X Handle" href="#x-handle" />
+            <NavButton name="Discord" href="#discord" />
+            <NavButton
+              name="Terms and Conditions"
+              href="#terms-and-conditions"
+            />
+            <NavButton name="Support" href="#support" />
           </div>
         </div>
-      ))}
-  <div className="p-4 rounded-lg shadow-lg bg-gray-800 min-w-40 md:min-w-60 mb-4">
-        <div className="grid grid-cols-2 gap-4">
-          <NavButton  name="X Handle" href="#x-handle" />
-          <NavButton  name="Discord" href="#discord" />
-          <NavButton  name="Terms and Conditions" href="#terms-and-conditions" />
-          <NavButton  name="Support" href="#support" />
-        </div>
-      </div>
-
-    </>
-  ), []);
+      </>
+    ),
+    []
+  );
 
   return (
     <>
-      <nav className="hidden md:block float-left p-4 pt-0 text-white space-y-4 h-[calc(100vh-3.5rem)]">
+      <nav className="hidden md:block float-left p-4 pt-0 text-white space-y-4 h-[calc(100vh-3.5rem)] max-w-[300px]">
         {renderNavContent()}
       </nav>
 
