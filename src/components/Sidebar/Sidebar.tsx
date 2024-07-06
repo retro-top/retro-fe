@@ -39,17 +39,6 @@ const Sidebar: React.FC = () => {
             </div>
           </div>
         ))}
-        <div className="p-4 border border-gray-800 border-t-0">
-          <div className="grid grid-cols-2 gap-4">
-            <NavButton name="X Handle" href="#x-handle" />
-            <NavButton name="Discord" href="#discord" />
-            <NavButton
-              name="Terms and Conditions"
-              href="#terms-and-conditions"
-            />
-            <NavButton name="Support" href="#support" />
-          </div>
-        </div>
       </>
     ),
     []
@@ -57,7 +46,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      <nav className="hidden md:block float-left pt-0 text-white h-[calc(100vh-3.5rem)] max-w-[250px]">
+      <nav className="hidden md:block float-left pt-0 text-white h-[calc(100vh-3.5rem)] max-w-[280px]">
         {renderNavContent()}
       </nav>
 

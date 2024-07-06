@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Titillium_Web } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import TopNavBar from "@/components/Navbar/TopNavBar";
 import RootLayoutProvider from "@/providers/RootLayoutProvider";
 
-const font = Titillium_Web({
+const font = Outfit({
   subsets: ["latin"],
   weight: ["200", "300", "400", "600", "700", "900"],
 });

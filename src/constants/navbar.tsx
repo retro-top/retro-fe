@@ -15,6 +15,32 @@ const homeOptions = [
   },
 ];
 
+const socialOptions = [
+  {
+    name: "X/Twitter",
+    href: "/twitter",
+    icon: <IoHomeOutline />,
+  },
+  {
+    name: "Discord",
+    href: "/discord",
+    icon: <IoHomeOutline />,
+  },
+]
+
+const otherOptions = [
+  {
+    name: "Terms & Conditions",
+    href: "/terms",
+    icon: <IoHomeOutline />,
+  },
+  {
+    name: "Support",
+    href: "/support",
+    icon: <IoHomeOutline />,
+  },
+];
+
 const navbars = [
   {
     heading: "Home",
@@ -29,6 +55,14 @@ const navbars = [
         href: item.href,
       };
     }),
+  },
+  {
+    heading: "Socials",
+    options: socialOptions,
+  },
+  {
+    heading: "Others",
+    options: otherOptions,
   },
 ];
 
