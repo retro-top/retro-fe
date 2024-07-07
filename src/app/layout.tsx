@@ -5,6 +5,9 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import TopNavBar from "@/components/Navbar/TopNavBar";
 import RootLayoutProvider from "@/providers/RootLayoutProvider";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const font = Outfit({
   subsets: ["latin"],
