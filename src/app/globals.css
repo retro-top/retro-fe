@@ -4,7 +4,7 @@
 
 * {
   scroll-behavior: smooth;
-  /* background: ; */
+  color: white;
 }
 
 @layer utilities {
@@ -31,10 +31,22 @@
   div {
     user-select: none;
   }
-}
 
-* {
-  scroll-behavior: smooth;
+  h1 {
+    @apply text-5xl font-semibold;
+  }
+  h2 {
+    @apply text-4xl font-semibold;
+  }
+  h3 {
+    @apply text-3xl font-semibold;
+  }
+  h4 {
+    @apply text-2xl font-semibold;
+  }
+  h5 {
+    @apply text-2xl font-semibold;
+  }
 }
 
 img {
@@ -43,6 +55,18 @@ img {
   -moz-user-drag: none;
   -o-user-drag: none;
   user-select: none;
+}
+
+.swiper {
+  @apply h-64 w-full m-4;
+}
+
+.swiper-slide {
+  @apply text-center flex items-center justify-center text-black;
+}
+
+.swiper-slide {
+  @apply block h-full w-full object-cover;
 }
 
 .wallet-selector-modal {
