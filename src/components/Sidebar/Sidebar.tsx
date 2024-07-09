@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
+import { RiSearchLine, RiGift2Line } from "react-icons/ri";
 import { FiMenu } from "react-icons/fi";
 import { AnimatePresence } from "framer-motion";
 import NavButton from "./NavButton";
@@ -13,6 +14,12 @@ const Sidebar: React.FC = () => {
   const toggleDrawer = useCallback(() => {
     setIsDrawerOpen((prev) => !prev);
   }, []);
+
+  const navItems = [
+    { name: "Menu", icon: FiMenu, onclick: () => toggleDrawer() },
+    { name: "Search", icon: RiSearchLine, onclick: () => {} },
+    { name: "Rewards", icon: RiGift2Line, onclick: () => {} },
+  ];
 
   const renderNavContent = useCallback(
     () => (
@@ -50,12 +57,20 @@ const Sidebar: React.FC = () => {
         {renderNavContent()}
       </nav>
 
-      <button
-        className="md:hidden fixed bottom-4 right-4 bg-gray-600 text-white p-3 rounded-full shadow-lg z-50"
-        onClick={toggleDrawer}
-      >
-        <FiMenu size={24} />
-      </button>
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 shadow-lg z-50">
+        <div className="flex justify-around items-center h-16">
+          {navItems.map((item, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center justify-center w-full"
+              onClick={item.onclick}
+            >
+              <item.icon className="text-2xl text-gray-600" size={16} />
+              <span className="text-xs mt-1 text-gray-600">{item.name}</span>
+            </div>
+          ))}
+        </div>
+      </nav>
 
       <AnimatePresence>
         {isDrawerOpen && (
