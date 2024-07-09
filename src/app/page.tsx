@@ -4,7 +4,7 @@ import React from 'react'
 
 const Page = () => {
   return (
-    <main>
+    <main className='space-y-4'>
       <HomeSwiper />
       <Games />
     </main>

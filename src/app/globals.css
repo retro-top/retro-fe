@@ -12,11 +12,11 @@
   }
 
   body {
-    @apply overflow-hidden;
+    @apply overflow-hidden text-white;
   }
 
   main {
-    @apply p-4 pt-0 min-h-screen;
+    @apply p-4 min-h-screen;
   }
 
   button {
@@ -57,7 +57,7 @@ img {
 }
 
 .swiper {
-  @apply h-64 w-full m-4;
+  @apply h-64 w-full p-4;
 }
 
 .swiper-slide {

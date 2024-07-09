@@ -22,7 +22,7 @@ const Games = () => {
   }, [width]);
 
   return (
-    <>
+    <section>
       <h4>Our Games</h4>
       <Swiper
         slidesPerView={slidesPerView}
@@ -36,7 +36,7 @@ const Games = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </section>
   );
 };
 

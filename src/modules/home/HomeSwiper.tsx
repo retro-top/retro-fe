@@ -2,20 +2,22 @@
 
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
+import SwiperCore from "swiper/core";
 import SizedImage from "@/components/basic/SizedImage";
 import { useWindowWidth } from "@react-hook/window-size";
 
 const HomeSwiper = () => {
-  const width = useWindowWidth()
+  const width = useWindowWidth();
+  SwiperCore.use([Autoplay, Pagination]);
   return (
-    <>
+    <section>
       <Swiper
         slidesPerView={width < 800 ? 1 : 2}
         spaceBetween={15}
-        modules={[Pagination]}
+        modules={[Pagination, Autoplay]}
         className="mySwiper"
-        autoplay
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
       >
         <SwiperSlide>
           <SizedImage
@@ -32,7 +34,7 @@ const HomeSwiper = () => {
           />
         </SwiperSlide>
       </Swiper>
-    </>
+    </section>
   );
 };
 
