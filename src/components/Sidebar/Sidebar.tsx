@@ -19,7 +19,7 @@ const Sidebar: React.FC = () => {
       <>
         {navbars.map((navbar, navbarIndex: number) => (
           <div
-            className="p-4 border border-gray-800 border-t-0"
+            className="p-4 border-t-2 md:border-t-0 md:border-r-0 md:border border-gray-800"
             key={navbarIndex}
           >
             <h1 className="text-sm font-semibold pb-2 select-none">
@@ -46,7 +46,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      <nav className="hidden md:block float-left pt-0 text-white h-[calc(100vh-3.5rem)] max-w-[280px]">
+      <nav className="hidden md:block float-left pt-0 text-white h-[calc(100vh-3.5rem)] max-w-[280px] md:border-r border-gray-800">
         {renderNavContent()}
       </nav>
 

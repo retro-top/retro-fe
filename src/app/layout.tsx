@@ -8,6 +8,7 @@ import RootLayoutProvider from "@/providers/RootLayoutProvider";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Footer from "@/components/Footer/Footer";
 
 const font = Outfit({
   subsets: ["latin"],
@@ -28,12 +29,15 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${font.className} bg-gray-900`}>
+      <body className={`${font.className} bg-primary`}>
         {google_analytics_id && <GoogleAnalytics gaId={google_analytics_id} />}
         <RootLayoutProvider>
           <TopNavBar />
           <Sidebar />
-          {children}
+          <div className="overflow-y-scroll h-[calc(100vh-3.5rem)]">
+            {children}
+            <Footer />
+          </div>
         </RootLayoutProvider>
       </body>
     </html>

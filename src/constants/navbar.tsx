@@ -1,6 +1,7 @@
 import games from "./games";
 import { IoHomeOutline } from "react-icons/io5";
-import { MdOutlineLeaderboard } from "react-icons/md";
+import { MdOutlineLeaderboard, MdSupport, MdMenuBook } from "react-icons/md";
+import { FaDiscord, FaXTwitter } from "react-icons/fa6";
 
 const homeOptions = [
   {
@@ -19,12 +20,12 @@ const socialOptions = [
   {
     name: "X/Twitter",
     href: "/twitter",
-    icon: <IoHomeOutline />,
+    icon: <FaXTwitter />,
   },
   {
     name: "Discord",
     href: "/discord",
-    icon: <IoHomeOutline />,
+    icon: <FaDiscord />,
   },
 ]
 
@@ -32,12 +33,12 @@ const otherOptions = [
   {
     name: "Terms & Conditions",
     href: "/terms",
-    icon: <IoHomeOutline />,
+    icon: <MdMenuBook />,
   },
   {
     name: "Support",
     href: "/support",
-    icon: <IoHomeOutline />,
+    icon: <MdSupport />,
   },
 ];
 
