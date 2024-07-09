@@ -28,7 +28,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
         animate={{ y: 0 }}
         exit={{ y: "100%" }}
         transition={{ type: "spring", damping: 25, stiffness: 500 }}
-        className="fixed bottom-0 left-0 right-0 bg-emerald-800 text-white z-50 max-h-[80vh] overflow-y-auto"
+        className="fixed bottom-0 left-0 right-0 bg-primary text-white z-50 max-h-[80vh] overflow-y-auto"
       >
         <div className="p-4">{children}</div>
       </motion.div>

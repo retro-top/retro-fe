@@ -4,7 +4,6 @@
 
 * {
   scroll-behavior: smooth;
-  color: white;
 }
 
 @layer utilities {
@@ -17,11 +16,11 @@
   }
 
   main {
-    @apply overflow-y-scroll h-[calc(100vh-3.5rem)] p-4 pt-0;
+    @apply p-4 pt-0 min-h-screen;
   }
 
   button {
-    @apply p-2 px-4 text-white bg-emerald-800 hover:bg-emerald-900 rounded shadow transition;
+    @apply p-2 px-4 text-white bg-secondary hover:bg-secondary rounded shadow transition;
   }
 
   label {
@@ -62,11 +61,11 @@ img {
 }
 
 .swiper-slide {
-  @apply text-center flex items-center justify-center text-black;
+  @apply flex items-center justify-center text-black object-cover;
 }
 
-.swiper-slide {
-  @apply block h-full w-full object-cover;
+.games-swiper-slider {
+  @apply max-w-44 max-h-44
 }
 
 .wallet-selector-modal {

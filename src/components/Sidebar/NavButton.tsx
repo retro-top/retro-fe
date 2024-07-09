@@ -19,12 +19,10 @@ const NavButton: React.FC<NavButtonProps> = ({ icon, name, href }) => {
 
   return (
     <div
-      className={`rounded-lg transition ${
-        isActive ? "bg-emerald-900" : "hover:bg-emerald-900"
-      }`}
+      className={`rounded-lg transition ${isActive ? "text-secondary" : ""}`}
     >
       <motion.div
-        whileHover={{ x: 5 }}
+        whileHover={{ x: isActive ? 0 : 5 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
       >
         <Link href={href}>

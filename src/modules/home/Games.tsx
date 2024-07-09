@@ -9,7 +9,7 @@ import { useWindowWidth } from "@react-hook/window-size";
 
 const Games = () => {
   const width = useWindowWidth();
-  let [slidesPerView, setSlidesPerView] = useState<"auto" | number>(7);
+  let [slidesPerView, setSlidesPerView] = useState<"auto" | number>('auto');
 
   useEffect(() => {
     if (width < 600) {
@@ -31,7 +31,7 @@ const Games = () => {
         className="mySwiper"
       >
         {games.map((item, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className="games-swiper-slider">
             <GameCard game={item} />
           </SwiperSlide>
         ))}
