@@ -57,7 +57,7 @@ const Sidebar: React.FC = () => {
         {renderNavContent()}
       </nav>
 
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 shadow-lg z-50">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 shadow-lg z-50 bg-primary">
         <div className="flex justify-around items-center h-16">
           {navItems.map((item, index) => (
             <div
