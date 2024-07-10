@@ -25,7 +25,7 @@ const Page = () => {
   const NUMBER_OF_TIME_USER_WANT_TO_PLAY = 10;
 
   return (
-    <div>
+    <main>
       <button
         onClick={() =>
           playGame([
@@ -39,7 +39,7 @@ const Page = () => {
       >
         Play
       </button>
-    </div>
+    </main>
   );
 };
 

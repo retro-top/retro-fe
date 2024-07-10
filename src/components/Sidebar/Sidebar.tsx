@@ -53,7 +53,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      <nav className="hidden md:block float-left pt-0 text-white h-[calc(100vh-3.5rem)] max-w-[280px] md:border-r border-gray-800">
+      <nav className="hidden md:block float-left pt-0 text-white h-[calc(100vh-3.5rem)] max-w-[280px] md:border-r border-gray-800 bg-primary-light overflow-y-scroll">
         {renderNavContent()}
       </nav>
 

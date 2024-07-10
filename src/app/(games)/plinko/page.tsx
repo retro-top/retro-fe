@@ -7,11 +7,11 @@ const Page = () => {
   const MOUNT_PER_BALL = "100000000000";
   const NUM_OF_BALL = "10";
   return (
-    <div>
+    <main>
       <button onClick={() => playGame([MOUNT_PER_BALL, NUM_OF_BALL])}>
         Play
       </button>
-    </div>
+    </main>
   );
 };
 

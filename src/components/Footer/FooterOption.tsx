@@ -14,7 +14,7 @@ const FooterOption: React.FC<Props> = ({ text, href }) => {
     <li className="mb-2">
       <Link href={href} passHref>
         <motion.span
-          className="inline-block text-gray-300 hover:text-white transition-colors duration-200"
+          className="inline-block text-gray-400 hover:text-gray-200 transition-colors duration-200"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >

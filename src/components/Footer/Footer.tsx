@@ -4,7 +4,7 @@ import FooterOption from "./FooterOption";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="text-sm text-white p-8">
+    <footer className="border-t border-gray-800 text-sm text-white p-8">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {footer.map((option, index) => (
           <div key={index} className="mb-4 sm:mb-0">

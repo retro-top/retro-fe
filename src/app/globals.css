@@ -16,7 +16,7 @@
   }
 
   main {
-    @apply p-4 min-h-screen;
+    @apply p-4 min-h-screen md:min-h-[80vh];
   }
 
   button {

@@ -6,9 +6,11 @@ import usePlay from "@/lib/aptos";
 
 const WheelOfFortunePage: React.FC = () => {
   return (
-    <div className="min-h-screen md:min-h-[60vh] flex flex-col items-center md:justify-center">
-      <WheelOfFortune />
-    </div>
+    <main className="flex flex-col items-center md:justify-center">
+      <div className="bg-primary-light h-full w-full rounded flex items-center justify-center">
+        <WheelOfFortune />
+      </div>
+    </main>
   );
 };
 

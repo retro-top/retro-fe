@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Sidebar from "@/components/Sidebar/Sidebar";
@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Footer from "@/components/Footer/Footer";
 
-const font = Outfit({
+const font = Inter({
   subsets: ["latin"],
   weight: ["200", "300", "400", "600", "700", "900"],
 });
@@ -29,7 +29,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${font.className} bg-primary`}>
+      <body className={`${font.className} bg-primary transition`}>
         {google_analytics_id && <GoogleAnalytics gaId={google_analytics_id} />}
         <RootLayoutProvider>
           <TopNavBar />

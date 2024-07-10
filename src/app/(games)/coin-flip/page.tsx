@@ -8,9 +8,9 @@ const Page = () => {
   const CHANCES = "2"; // chances
 
   return (
-    <div>
+    <main>
       <button onClick={() => playGame(["0", BET_AMOUNT, CHANCES])}>Play</button>
-    </div>
+    </main>
   );
 };
 

@@ -12,8 +12,9 @@ const WheelOfFortune = () => {
   const [rotation, setRotation] = useState(0);
 
   const handleClick = async () => {
-    const play = await playGame([7]);
-    console.log(play)
+    // const play = await playGame([7]);
+    // console.log(play)
+    setRotation(810)
   };
 
 
