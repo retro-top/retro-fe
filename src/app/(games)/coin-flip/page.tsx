@@ -1,12 +1,14 @@
 "use client";
 
+import React, { useEffect, useRef } from "react";
 import CoinToss from "@/components/game/Cointoss/Coin";
 import GameLayout from "@/components/game-controller/GameLayout";
 import Dropdown from "@/components/basic/Dropdown";
 import Gamepad from "@/components/game-controller/Gamepad";
-import { useEffect } from "react";
 import usePlay from "@/lib/game";
 import GameWrapper from "@/components/game-controller/GameWrapper";
+
+type Answer = 0 | 1;
 
 const BET_AMOUNT = "100000000000";
 const CHANCES = "1";
@@ -19,6 +21,8 @@ const Page = () => {
   useEffect(() => {
     setGameArguments(["0", BET_AMOUNT, CHANCES]);
   }, [setGameArguments]);
+
+  const coinTossRef = useRef<{ flipCoins: () => void }>(null);
 
   return (
     <main>
@@ -37,13 +41,20 @@ const Page = () => {
             onSelect={() => {}}
             defaultSelectedOption={0}
           />
-          <button>Flip Coin</button>
+          <button onClick={() => coinTossRef.current?.flipCoins()}>
+            Flip Coin
+          </button>
         </Gamepad>
         <GameWrapper>
           <CoinToss
-            answers={[0, 1]}
+            answers={
+              Array.from({ length: parseInt(gameArguments[2]) }, () =>
+                Math.floor(Math.random() * 3)
+              ) as Answer[]
+            }
             onTossComplete={() => {}}
             totalCoins={parseInt(gameArguments[2])}
+            ref={coinTossRef}
           />
         </GameWrapper>
       </GameLayout>
