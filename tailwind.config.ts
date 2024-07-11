@@ -12,6 +12,7 @@ const config: Config = {
         primary: "#080808",
         "primary-light": "#121418",
         secondary: "#886cff",
+        "secondary-light": "#a08aff",
       },
     },
   },

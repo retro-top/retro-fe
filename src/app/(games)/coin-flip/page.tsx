@@ -1,15 +1,52 @@
 "use client";
 
-import usePlay from "@/lib/aptos";
+import CoinToss from "@/components/game/Cointoss/Coin";
+import GameLayout from "@/components/game-controller/GameLayout";
+import Dropdown from "@/components/basic/Dropdown";
+import Gamepad from "@/components/game-controller/Gamepad";
+import { useEffect } from "react";
+import usePlay from "@/lib/game";
+import GameWrapper from "@/components/game-controller/GameWrapper";
+
+const BET_AMOUNT = "100000000000";
+const CHANCES = "1";
+const CHANCES_OPTIONS = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
 
 const Page = () => {
-  const { playGame } = usePlay("coin_flip");
-  const BET_AMOUNT = "100000000000";
-  const CHANCES = "2"; // chances
+  const { gameArguments, setGameArguments, changeGameArguments } =
+    usePlay("coin_flip");
+
+  useEffect(() => {
+    setGameArguments(["0", BET_AMOUNT, CHANCES]);
+  }, [setGameArguments]);
 
   return (
     <main>
-      <button onClick={() => playGame(["0", BET_AMOUNT, CHANCES])}>Play</button>
+      <GameLayout>
+        <Gamepad>
+          <Dropdown
+            options={CHANCES_OPTIONS}
+            onSelect={(opt) => {
+              changeGameArguments(CHANCES_OPTIONS[opt], 2);
+              console.log(gameArguments);
+            }}
+            defaultSelectedOption={0}
+          />
+          <Dropdown
+            options={["APTOS", "GUI", "ZAAP"]}
+            onSelect={() => {}}
+            defaultSelectedOption={0}
+          />
+          <button>Flip Coin</button>
+        </Gamepad>
+        <GameWrapper>
+          <CoinToss
+            answers={[0, 1]}
+            onTossComplete={() => {}}
+            totalCoins={parseInt(gameArguments[2])}
+          />
+        </GameWrapper>
+      </GameLayout>
     </main>
   );
 };

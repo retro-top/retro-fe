@@ -2,13 +2,13 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import SizedImage from "./basic/SizedImage";
-import { FaCirclePlay } from "react-icons/fa6";
 import { GameData } from "@/constants/games";
+import SizedImage from "./basic/SizedImage";
 
 interface Props {
   game: GameData;
 }
+//useless
 
 const GameCard = ({ game }: Props) => {
   return (

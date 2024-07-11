@@ -1,8 +1,11 @@
 import React from 'react'
+import GameLayout from '@/components/game-controller/GameLayout';
 
 const Page = () => {
   return (
-    <main>page</main>
+    <main>
+      <GameLayout>Will Updated Soon</GameLayout>
+    </main>
   )
 }
 

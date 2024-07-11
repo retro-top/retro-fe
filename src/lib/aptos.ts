@@ -8,7 +8,7 @@ import {
 } from "@aptos-labs/wallet-adapter-react";
 import getNetwork from "./network";
 
-const usePlay = (game: ResourceType) => {
+const useAptosPlay = (game: ResourceType) => {
   const network = getNetwork();
   const config = new AptosConfig({ network });
   const aptos = new Aptos(config);
@@ -66,10 +66,10 @@ const usePlay = (game: ResourceType) => {
       setConfigData(accountResource);
     };
 
-    fetchAccountResource(RESOURCE_ADDRESS, MODULE_ADDRESS, SUPPORTED_COIN);
+    // fetchAccountResource(RESOURCE_ADDRESS, MODULE_ADDRESS, SUPPORTED_COIN);
   }, [RESOURCE_ADDRESS, MODULE_ADDRESS, SUPPORTED_COIN]);
 
   return { configData, accountHasList, playGame };
 };
 
-export default usePlay;
+export default useAptosPlay;
