@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import CoinToss from "@/components/game/Cointoss/Coin";
-import GameLayout from "@/components/game-controller/GameLayout";
 import Dropdown from "@/components/basic/Dropdown";
-import Gamepad from "@/components/game-controller/Gamepad";
-import usePlay from "@/lib/game";
-import GameWrapper from "@/components/game-controller/GameWrapper";
+import usePlay from "@/hooks/game";
+import Game from "@/components/Game";
 
 type Answer = 0 | 1;
 
@@ -15,19 +13,18 @@ const CHANCES = "1";
 const CHANCES_OPTIONS = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
 
 const Page = () => {
-  const { gameArguments, setGameArguments, changeGameArguments } =
-    usePlay("coin_flip");
-
-  useEffect(() => {
-    setGameArguments(["0", BET_AMOUNT, CHANCES]);
-  }, [setGameArguments]);
+  const { gameArguments, changeGameArguments } = usePlay("coin_flip", [
+    "0",
+    BET_AMOUNT,
+    CHANCES,
+  ]);
 
   const coinTossRef = useRef<{ flipCoins: () => void }>(null);
 
   return (
     <main>
-      <GameLayout>
-        <Gamepad>
+      <Game.Root>
+        <Game.Sidebar>
           <Dropdown
             options={CHANCES_OPTIONS}
             onSelect={(opt) => {
@@ -44,8 +41,8 @@ const Page = () => {
           <button onClick={() => coinTossRef.current?.flipCoins()}>
             Flip Coin
           </button>
-        </Gamepad>
-        <GameWrapper>
+        </Game.Sidebar>
+        <Game.UI>
           <CoinToss
             answers={
               Array.from({ length: parseInt(gameArguments[2]) }, () =>
@@ -56,8 +53,8 @@ const Page = () => {
             totalCoins={parseInt(gameArguments[2])}
             ref={coinTossRef}
           />
-        </GameWrapper>
-      </GameLayout>
+        </Game.UI>
+      </Game.Root>
     </main>
   );
 };

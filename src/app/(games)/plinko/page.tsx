@@ -1,16 +1,23 @@
 "use client";
 
-import usePlay from "@/lib/aptos";
+import React from "react";
+import usePlay from "@/hooks/game";
+import Game from "@/components/Game";
+
+const MOUNT_PER_BALL = "100000000000";
+const NUM_OF_BALL = "10";
 
 const Page = () => {
-  const { playGame } = usePlay("plinko");
-  const MOUNT_PER_BALL = "100000000000";
-  const NUM_OF_BALL = "10";
+  const { triggerGame } = usePlay("plinko", [MOUNT_PER_BALL, NUM_OF_BALL]);
+
   return (
     <main>
-      <button onClick={() => playGame([MOUNT_PER_BALL, NUM_OF_BALL])}>
-        Play
-      </button>
+      <Game.Root>
+        <Game.Sidebar>
+          <button onClick={() => triggerGame()}>Play</button>
+        </Game.Sidebar>
+        <Game.UI>Will Updated Soon</Game.UI>
+      </Game.Root>
     </main>
   );
 };

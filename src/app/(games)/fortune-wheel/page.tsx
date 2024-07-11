@@ -1,47 +1,43 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import WheelOfFortune from "@/components/game/fortune-wheel/FortuneWheel";
-import usePlay from "@/lib/game";
-import GameLayout from "@/components/game-controller/GameLayout";
-import GameWrapper from "@/components/game-controller/GameWrapper";
-import Gamepad from "@/components/game-controller/Gamepad";
+import usePlay from "@/hooks/game";
+import Game from "@/components/Game";
 import Dropdown from "@/components/basic/Dropdown";
 
 const CHANCES_OPTIONS = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
 
 const WheelOfFortunePage: React.FC = () => {
-  const { gameArguments, setGameArguments, changeGameArguments, triggerGame } =
-    usePlay("fortune_wheel");
+  const { gameArguments, changeGameArguments, triggerGame } = usePlay(
+    "fortune_wheel",
+    ["1"]
+  );
   const wheelRef = useRef<{ wheelRotate: () => void }>(null);
 
-  useEffect(() => {
-    setGameArguments(["1"]);
-  }, [setGameArguments]);
-
   const handlePlayClick = () => {
-    wheelRef.current?.wheelRotate()
-    // triggerGame();
-  }
+    // wheelRef.current?.wheelRotate()
+    triggerGame();
+  };
 
   return (
     <main>
-      <GameLayout>
-        <Gamepad>
+      <Game.Root>
+        <Game.Sidebar>
           <Dropdown
             options={CHANCES_OPTIONS}
             onSelect={(opt) => {
-              changeGameArguments(CHANCES_OPTIONS[opt], 2);
+              changeGameArguments(CHANCES_OPTIONS[opt], 0);
               console.log(gameArguments);
             }}
             defaultSelectedOption={0}
           />
           <button onClick={handlePlayClick}>Spin</button>
-        </Gamepad>
-        <GameWrapper>
+        </Game.Sidebar>
+        <Game.UI>
           <WheelOfFortune ref={wheelRef} />
-        </GameWrapper>
-      </GameLayout>
+        </Game.UI>
+      </Game.Root>
     </main>
   );
 };

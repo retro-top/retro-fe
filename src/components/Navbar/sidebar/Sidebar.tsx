@@ -4,7 +4,7 @@ import React, { useState, useCallback } from "react";
 import { RiSearchLine, RiGift2Line } from "react-icons/ri";
 import { FiMenu } from "react-icons/fi";
 import { AnimatePresence } from "framer-motion";
-import NavButton from "./NavButton";
+import NavButton from "../NavButton";
 import MobileDrawer from "./MobileDrawer";
 import navbars from "@/constants/navbar";
 

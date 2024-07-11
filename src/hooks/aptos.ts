@@ -6,9 +6,12 @@ import {
   useWallet,
   InputTransactionData,
 } from "@aptos-labs/wallet-adapter-react";
-import getNetwork from "./network";
+import getNetwork from "../lib/network";
+import { useToast } from "@/components/basic/Toast";
 
 const useAptosPlay = (game: ResourceType) => {
+  const { addToast } = useToast();
+
   const network = getNetwork();
   const config = new AptosConfig({ network });
   const aptos = new Aptos(config);
@@ -16,7 +19,7 @@ const useAptosPlay = (game: ResourceType) => {
   const [configData, setConfigData] = useState<any>();
   const [accountHasList, setAccountHasList] = useState(false);
 
-  const { wallet, signAndSubmitTransaction } = useWallet();
+  const { wallet, connected, signAndSubmitTransaction } = useWallet();
 
   // constant definination
   const MODULE_ADDRESS = (
@@ -29,6 +32,9 @@ const useAptosPlay = (game: ResourceType) => {
   const SUPPORTED_COIN = testnet_data[game].supported_coins[0].coin_address;
 
   const playGame = async (gameArguments: any[]) => {
+    if (!connected) {
+      addToast("Please Connect the Wallet", "error");
+    }
     const transaction: InputTransactionData = {
       data: {
         function: resource[game].play(MODULE_ADDRESS),

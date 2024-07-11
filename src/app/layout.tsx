@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import Sidebar from "@/components/Sidebar/Sidebar";
-import TopNavBar from "@/components/Navbar/TopNavBar";
+import Sidebar from "@/components/navbar/sidebar/Sidebar";
+import TopNavBar from "@/components/navbar/TopNavBar";
 import RootLayoutProvider from "@/providers/RootLayoutProvider";
+import Footer from "@/components/footer/Footer";
+import "./globals.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Footer from "@/components/Footer/Footer";
 
 const font = Inter({
   subsets: ["latin"],

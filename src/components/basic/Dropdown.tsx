@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
@@ -65,7 +66,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         className="flex items-center justify-between w-full px-4 py-2 border border-gray-800 rounded cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className="truncate">
+        <span className="truncate text-sm">
           {selectedOption !== -1 ? options[selectedOption] : placeholder}
         </span>
         {isOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
@@ -85,7 +86,7 @@ const Dropdown: React.FC<DropdownProps> = ({
             {options.map((option, index) => (
               <li
                 key={index}
-                className="px-4 py-2 cursor-pointer hover:bg-primary-light"
+                className="px-4 py-2 cursor-pointer hover:bg-primary-light text-sm"
                 onClick={() => handleSelect(index)}
               >
                 {option}

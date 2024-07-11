@@ -4,7 +4,7 @@ import React, { forwardRef, useState, useImperativeHandle } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { IoTriangleSharp } from "react-icons/io5";
-import usePlay from "@/lib/aptos";
+import usePlay from "@/hooks/aptos";
 
 const WheelOfFortune = forwardRef((props, ref) => {
   const { configData, accountHasList, playGame } = usePlay("fortune_wheel");
