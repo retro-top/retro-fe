@@ -6,8 +6,9 @@ const usePlay = (game: ResourceType) => {
   const [gameArguments, setGameArguments] = useState<any[]>([]);
   const { configData, accountHasList, playGame } = useAptosPlay(game);
 
-  const triggerGame = () => {
-    playGame(gameArguments);
+  const triggerGame = async () => {
+    const data = await playGame(gameArguments);
+    console.log(data)
   };
 
   const changeGameArguments = (newElemValue: any, index: number) => {

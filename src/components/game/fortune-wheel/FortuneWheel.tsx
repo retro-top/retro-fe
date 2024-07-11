@@ -1,22 +1,24 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { forwardRef, useState, useImperativeHandle } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { IoTriangleSharp } from "react-icons/io5";
 import usePlay from "@/lib/aptos";
 
-const WheelOfFortune = () => {
+const WheelOfFortune = forwardRef((props, ref) => {
   const { configData, accountHasList, playGame } = usePlay("fortune_wheel");
-
   const [rotation, setRotation] = useState(0);
+
+  useImperativeHandle(ref, () => ({
+    wheelRotate: handleClick,
+  }));
 
   const handleClick = async () => {
     // const play = await playGame([7]);
-    // console.log(play)
-    setRotation(810)
+    // console.log(play);
+    setRotation((prev) => prev + 810); // Increment to continue rotation
   };
-
 
   return (
     <div className="relative w-80 h-80">
@@ -38,15 +40,10 @@ const WheelOfFortune = () => {
           <IoTriangleSharp color="#FF0000" />
         </div>
       </div>
-
-      <button
-        onClick={handleClick}
-        className="absolute top-full left-1/2 -translate-x-1/2 mt-4 px-4 py-2"
-      >
-        Spin
-      </button>
     </div>
   );
-};
+});
+
+WheelOfFortune.displayName = "WheelOfFortune";
 
 export default WheelOfFortune;
