@@ -1,46 +1,51 @@
+import games from "./games";
+import { socialOptions } from "./navbar";
+
 const footer = [
   {
     heading: "Support",
     options: [
-      { text: "Live Support", href: "/support/live" },
-      { text: "Help Center", href: "/support/help-center" },
+      { text: "Support", href: "/support/live" },
+      { text: "Request Games", href: "/support/help-center" },
       { text: "Game Responsibly", href: "/support/game-responsibly" },
     ],
   },
   {
-    heading: "Platform",
-    options: [
-      { text: "Provably Fair", href: "/platform/provably-fair" },
-      { text: "Affiliate Program", href: "/platform/affiliate" },
-      { text: "Redeem Code", href: "/platform/redeem" },
-      { text: "VIP Program", href: "/platform/vip" },
-    ],
+    heading: "Games",
+    options: games.map((game) => {
+      return {
+        text: game.name,
+        href: game.href,
+      };
+    }),
   },
   {
-    heading: "Policy",
+    heading: "Rewards",
     options: [
-      { text: "Terms of Service", href: "/policy/terms" },
-      { text: "Privacy Policy", href: "/policy/privacy" },
-      { text: "AML Policy", href: "/policy/aml" },
-      { text: "License", href: "/policy/license" },
-      { text: "Sports", href: "/policy/sports" },
+      { text: "Leaderboard (Coming Soon)", href: "/" },
+      { text: "Rewards (Coming Soon)", href: "/" },
+      { text: "Affiliate (Coming Soon)", href: "/" },
+      { text: "Retro Codes (Coming Soon)", href: "/" },
     ],
   },
   {
     heading: "Community",
-    options: [
-      { text: "Twitter", href: "https://twitter.com/yourprofile" },
-      { text: "Instagram", href: "https://instagram.com/yourprofile" },
-      { text: "TikTok", href: "https://tiktok.com/@yourprofile" },
-      { text: "Facebook", href: "https://facebook.com/yourprofile" },
-      { text: "Telegram", href: "https://t.me/yourprofile" },
-      { text: "Merch", href: "/community/merch" },
-    ],
+    options: socialOptions.map((item) => ({
+      text: item.name,
+      href: item.href,
+    })),
   },
 ];
 
 export const companyInfo = `
-Shuffle is owned and operated by Natural Nine B.V., Curaçao company registration number 160998, with its registered address at Korporaalweg 10, Willemstad, Curaçao. Shuffle is authorized and regulated by the Government of Curaçao and operates under License No. 8048/JAZ issued to Antillephone. Shuffle's payment agent company is River Card Limited, Cyprus company registration number HE 431566, with its registered address at 50 Spyrou Kyprianou Avenue, Irida Tower 3, Floor 6, 6057 Larnaca, Cyprus. Contact us at support@shuffle.com.
+Retro.top, an innovative online gaming platform built on the Aptos Network. At Retro.top, we offer a variety of exciting and engaging games designed to provide endless entertainment and the chance to win amazing rewards. Our platform features popular games such as NFT Spin, Wheel Spin, and Dice Roll, each offering unique gameplay experiences and opportunities for fun.
+
+To participate in these games and unlock rewards, you will need tokens. Tokens are essential for playing any game on Retro.top, and they add an extra layer of excitement as you compete for valuable prizes. Our platform ensures a fair and transparent gaming environment, where everyone has an equal chance to win.
+
+At Retro.top, we prioritize responsible gaming. We encourage all our players to play carefully and with a free, open mind. It's important to remember that while the games are designed for entertainment, they should be enjoyed responsibly. Set limits for yourself, take breaks, and avoid chasing losses. Our goal is to create a fun and enjoyable experience for everyone, and responsible gaming is a key part of that mission.
+
+1 APT = $5.66
+© 2024 retro.top | All Rights Reserved
 `;
 
 export default footer;

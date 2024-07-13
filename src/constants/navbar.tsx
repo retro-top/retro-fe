@@ -1,7 +1,7 @@
 import games from "./games";
 import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineLeaderboard, MdSupport, MdMenuBook } from "react-icons/md";
-import { FaDiscord, FaXTwitter } from "react-icons/fa6";
+import { FaDiscord, FaTelegram, FaXTwitter } from "react-icons/fa6";
 import { BiSolidOffer } from "react-icons/bi";
 
 const homeOptions = [
@@ -22,11 +22,16 @@ const homeOptions = [
   },
 ];
 
-const socialOptions = [
+export const socialOptions = [
   {
     name: "X/Twitter",
     href: "/twitter",
     icon: <FaXTwitter />,
+  },
+  {
+    name: "Telegram",
+    href: "/telegram",
+    icon: <FaTelegram />,
   },
   {
     name: "Discord",
