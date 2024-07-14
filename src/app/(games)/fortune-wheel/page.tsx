@@ -6,7 +6,6 @@ import usePlay from "@/hooks/game";
 import Game from "@/components/Game";
 import Dropdown from "@/components/basic/Dropdown";
 import { FortuneWheelConfig } from "@/interface/game.interface";
-import { useToast } from "@/components/basic/Toast";
 import { fortune_wheel } from "@/constants/testnet_data";
 import {
   FortuneWheelResponse,
@@ -16,16 +15,11 @@ import {
 const CHANCES_OPTIONS = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
 
 const WheelOfFortunePage: React.FC = () => {
-  const { addToast } = useToast();
   const { gameArguments, changeGameArguments, configData, triggerGame } =
     usePlay<FortuneWheelConfig>("fortune_wheel", ["1"]);
   const wheelRef = useRef<{ wheelRotate: () => void }>(null);
 
   const handlePlayClick = async () => {
-    if (!configData) {
-      addToast("No Config Data Found", "error");
-    }
-
     const gameResponse = await triggerGame();
     const acceptedResponse = gameResponse.events.filter((item) =>
       item.type.includes(fortune_wheel.module_address)

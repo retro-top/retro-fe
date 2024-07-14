@@ -6,6 +6,21 @@ export interface FortuneWheelResponse {
   timestamp: string;
 }
 
+export interface DiceRollResponse {
+  amount_won: string;
+  bet_amounts: string[];
+  bet_multiplier: string;
+  bet_type: string;
+  coin_type: string;
+  defy_coins_won: string;
+  dice_one_value: string;
+  dice_two_value: string;
+  player: string;
+  side: boolean;
+  sum: string;
+  total_bet_amount: string;
+}
+
 export interface TransactionEvent<T> {
   data: T;
   guid: {

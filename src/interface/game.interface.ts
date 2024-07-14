@@ -3,16 +3,16 @@ interface GameConfig {
   active: boolean;
 }
 
-type DiceRollType = {
+export interface DiceRollConfig {
   active: true;
   coin_balance: {
-    value: `${number}`;
+    value: NumberString;
   };
-  counter: `${number}`;
-  defy_coins_exchange_rate: `${number}`;
+  counter: NumberString;
+  defy_coins_exchange_rate: NumberString;
   max_bet_amount: NumberString;
-  min_bet_amount: `${number}`;
-};
+  min_bet_amount: NumberString;
+}
 
 export interface FortuneWheelConfig extends GameConfig {
   coin_reward_tiers_amounts: NumberString[];

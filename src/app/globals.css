@@ -10,11 +10,17 @@
   display: none;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@layer utilities {
   body {
     @apply overflow-hidden text-white;
   }
@@ -60,7 +66,15 @@
   }
 
   p {
-    @apply text-xs md:text-sm 
+    @apply text-xs md:text-sm;
+  }
+
+  input {
+    @apply outline-none border text-sm border-gray-800 p-2 rounded bg-transparent;
+  }
+
+  .text-balance {
+    text-wrap: balance;
   }
 }
 

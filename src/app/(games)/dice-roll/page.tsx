@@ -3,45 +3,76 @@
 import Game from "@/components/Game";
 import DiceRoll from "@/components/game/Diceroll";
 import usePlay from "@/hooks/game";
+import { DiceRollConfig } from "@/interface/game.interface";
+import Dropdown from "@/components/basic/Dropdown";
+import { dice_roll } from "@/constants/testnet_data";
+import { DiceRollResponse, TransactionEvent } from "@/interface/response.interface";
 
-const BET_TYPE = 1;
+const CHANCES_OPTIONS = Array.from({ length: 10 }, (_, i) =>
+  (i + 1).toString()
+);
+
+const BET_TYPE = 0;
 const SIDE = true;
-const BET_AMOUNNT_EVEN_ODD = 100000000000;
+const BET_AMOUNT_EVEN_ODD = 10000000;
 const ARR = [
   "0", // bet for sum 2
   "0", // bet for sum 3
   "0", // bet for sum 4
   "0", // bet for sum 5
-  "0", // bet for sum 6
+  "10000000", // bet for sum 6
   "0", // bet for sum 7
   "0", // bet for sum 8
   "0", // bet for sum 9
   "0", // bet for sum 10
   "0", // bet for sum 11
-  "1000", // bet for sum 12
+  "0", // bet for sum 12
 ];
 
-const NUMBER_OF_TIME_USER_WANT_TO_PLAY = 9;
+const NUMBER_OF_TIME_USER_WANT_TO_PLAY = 1;
 
 const Page = () => {
-  const { triggerGame } = usePlay("dice_roll", [
-    BET_TYPE,
-    ARR,
-    SIDE,
-    BET_AMOUNNT_EVEN_ODD,
-    NUMBER_OF_TIME_USER_WANT_TO_PLAY,
-  ]);
+  const { configData, gameArguments, changeGameArguments, triggerGame } =
+    usePlay<DiceRollConfig>("dice_roll", [
+      BET_TYPE,
+      ARR,
+      SIDE,
+      BET_AMOUNT_EVEN_ODD,
+      NUMBER_OF_TIME_USER_WANT_TO_PLAY,
+    ]);
 
   const handleRollComplete = (results: [number, number]) => {
-    console.log(`Dice roll results: ${results[0]} and ${results[1]}`);
-    // Handle betting logic here
+  };
+
+  console.log("Config", configData);
+
+  const handlePlayClick = async () => {
+    const gameResponse = await triggerGame();
+    const acceptedResponse = gameResponse.events.filter((item) =>
+      item.type.includes(dice_roll.module_address)
+    )[0] as TransactionEvent<DiceRollResponse>;
+
+    console.log(acceptedResponse.data);
   };
 
   return (
     <main>
       <Game.Root>
         <Game.Sidebar>
-          <button onClick={triggerGame}>Play</button>
+          <input
+            value={gameArguments[3]}
+            onChange={(e) => changeGameArguments(e.target.value, 3)}
+            type="number"
+            placeholder="Enter the Amount"
+          />
+          <Dropdown
+            options={CHANCES_OPTIONS}
+            onSelect={(opt) => {
+              changeGameArguments(opt, 4);
+            }}
+            defaultSelectedOption={0}
+          />
+          <button onClick={handlePlayClick}>Play</button>
         </Game.Sidebar>
         <Game.UI>
           <DiceRoll onRollComplete={handleRollComplete} />
