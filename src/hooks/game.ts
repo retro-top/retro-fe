@@ -1,16 +1,18 @@
 import { ResourceType } from "@/constants/resource";
 import useAptosPlay from "./aptos";
 import { useState } from "react";
+import { Transaction } from "@/interface/response.interface";
 
-const usePlay = (game: ResourceType, defaultArguments?: any[]) => {
+const usePlay = <T>(game: ResourceType, defaultArguments?: any[]) => {
   const [gameArguments, setGameArguments] = useState<any[]>(
     defaultArguments || []
   );
-  const { configData, accountHasList, playGame } = useAptosPlay(game);
+  const { configData, accountHasList, playGame } = useAptosPlay<T>(game);
 
   const triggerGame = async () => {
-    const data = await playGame(gameArguments);
-    console.log(data);
+    const data = (await playGame(gameArguments)) as Transaction;
+
+    return data;
   };
 
   const changeGameArguments = (newElemValue: any, index: number) => {

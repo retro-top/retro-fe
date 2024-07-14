@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import CoinToss from "@/components/game/Cointoss/Coin";
+import CoinToss from "@/components/game/coin-toss/Coin";
 import Dropdown from "@/components/basic/Dropdown";
 import usePlay from "@/hooks/game";
 import Game from "@/components/Game";
@@ -13,7 +13,7 @@ const CHANCES = "1";
 const CHANCES_OPTIONS = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
 
 const Page = () => {
-  const { gameArguments, changeGameArguments } = usePlay("coin_flip", [
+  const { gameArguments, changeGameArguments, triggerGame } = usePlay("coin_flip", [
     "0",
     BET_AMOUNT,
     CHANCES,
@@ -38,7 +38,7 @@ const Page = () => {
             onSelect={() => {}}
             defaultSelectedOption={0}
           />
-          <button onClick={() => coinTossRef.current?.flipCoins()}>
+          <button onClick={() => triggerGame()}>
             Flip Coin
           </button>
         </Game.Sidebar>

@@ -1,6 +1,7 @@
 "use client";
 
 import Game from "@/components/Game";
+import DiceRoll from "@/components/game/Diceroll";
 import usePlay from "@/hooks/game";
 
 const BET_TYPE = 1;
@@ -31,13 +32,20 @@ const Page = () => {
     NUMBER_OF_TIME_USER_WANT_TO_PLAY,
   ]);
 
+  const handleRollComplete = (results: [number, number]) => {
+    console.log(`Dice roll results: ${results[0]} and ${results[1]}`);
+    // Handle betting logic here
+  };
+
   return (
     <main>
       <Game.Root>
         <Game.Sidebar>
           <button onClick={triggerGame}>Play</button>
         </Game.Sidebar>
-        <Game.UI>Will Updated Soon</Game.UI>
+        <Game.UI>
+          <DiceRoll onRollComplete={handleRollComplete} />
+        </Game.UI>
       </Game.Root>
     </main>
   );

@@ -1,13 +1,17 @@
 import { use } from "react";
+import { coin_flip } from "./testnet_data";
 
 type ReturnType = `${string}::${string}::${string}`;
+
+const COIN_FLIP_COINX = coin_flip.supported_coins[0].coin_address;
+const COIN_FLIP_COINY = coin_flip.supported_coins[1].coin_address;
 
 const resource = {
   coin_flip: {
     config: (module_address: string): ReturnType =>
-      `${module_address}::coin_flip::GameManager<coinx, coiny>`,
+      `${module_address}::coin_flip::GameManager<${COIN_FLIP_COINX}, ${COIN_FLIP_COINY}>`,
     play: (module_address: string): ReturnType =>
-      `${module_address}::dice_roll::play_multiple`,
+      `${module_address}::coin_flip::play_multiple`,
     user_rewards: (module_address: string, coin_address: string): ReturnType =>
       `${module_address}::wheel::UserCoinRewards<${coin_address}>`,
     claim: (module_address: string): ReturnType =>

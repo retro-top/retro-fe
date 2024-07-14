@@ -14,7 +14,7 @@ interface SizedImageProps extends DivProps {
 const SizedImage: React.FC<SizedImageProps> = ({
   src,
   alt,
-  className = "h-[30rem] w-[70rem]",
+  className = "h-[15rem] aspect-[10/13]",
   imageClassName = "",
   noCorner = false,
 }) => {
@@ -27,8 +27,9 @@ const SizedImage: React.FC<SizedImageProps> = ({
       <Image
         src={src}
         alt={alt}
-        className={` ${imageClassName ? imageClassName : "object-cover"}`}
+        className={imageClassName}
         loading="lazy"
+        objectFit="cover"
         fill
       />
     </div>

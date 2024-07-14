@@ -9,14 +9,14 @@ import {
 import getNetwork from "../lib/network";
 import { useToast } from "@/components/basic/Toast";
 
-const useAptosPlay = (game: ResourceType) => {
+const useAptosPlay = <T>(game: ResourceType) => {
   const { addToast } = useToast();
 
   const network = getNetwork();
   const config = new AptosConfig({ network });
   const aptos = new Aptos(config);
 
-  const [configData, setConfigData] = useState<any>();
+  const [configData, setConfigData] = useState<T>();
   const [accountHasList, setAccountHasList] = useState(false);
 
   const { wallet, connected, signAndSubmitTransaction } = useWallet();
@@ -29,7 +29,9 @@ const useAptosPlay = (game: ResourceType) => {
   ) as string;
 
   const RESOURCE_ADDRESS = testnet_data[game].resource_address;
-  const SUPPORTED_COIN = testnet_data[game].supported_coins[0].coin_address;
+  const SUPPORTED_COINS = testnet_data[game].supported_coins.map(
+    (coins) => coins.coin_address
+  );
 
   const playGame = async (gameArguments: any[]) => {
     if (!connected) {
@@ -38,7 +40,7 @@ const useAptosPlay = (game: ResourceType) => {
     const transaction: InputTransactionData = {
       data: {
         function: resource[game].play(MODULE_ADDRESS),
-        typeArguments: [SUPPORTED_COIN],
+        typeArguments: [...SUPPORTED_COINS],
         functionArguments: [...gameArguments],
         // type: "entry_function_payload",
       },
@@ -46,11 +48,13 @@ const useAptosPlay = (game: ResourceType) => {
 
     try {
       const response = await signAndSubmitTransaction(transaction);
-      await aptos.waitForTransaction({ transactionHash: response.hash });
+      const transactionResponse = await aptos.waitForTransaction({
+        transactionHash: response.hash,
+      });
 
-      setAccountHasList(true);
-      // console.log(response);
-      return response;
+      if (transactionResponse.success) setAccountHasList(true);
+      
+      return transactionResponse;
     } catch (error) {
       console.error("Sign And Submit Error", error);
     }
@@ -60,10 +64,13 @@ const useAptosPlay = (game: ResourceType) => {
     const fetchAccountResource = async (
       account_address: string,
       module_address: string,
-      coin_address: string
+      coin_addresses: string[]
     ) => {
       const accountAddress = account_address;
-      const resourceType = resource[game].config(module_address, coin_address);
+      const resourceType = resource[game].config(
+        module_address,
+        coin_addresses[0]
+      );
       const accountResource = await aptos.getAccountResource({
         accountAddress,
         resourceType,
@@ -72,8 +79,8 @@ const useAptosPlay = (game: ResourceType) => {
       setConfigData(accountResource);
     };
 
-    // fetchAccountResource(RESOURCE_ADDRESS, MODULE_ADDRESS, SUPPORTED_COIN);
-  }, [RESOURCE_ADDRESS, MODULE_ADDRESS, SUPPORTED_COIN]);
+    fetchAccountResource(RESOURCE_ADDRESS, MODULE_ADDRESS, SUPPORTED_COINS);
+  }, []);
 
   return { configData, accountHasList, playGame };
 };

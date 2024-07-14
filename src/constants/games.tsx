@@ -12,7 +12,7 @@ export interface GameData {
   id: string;
   startDate?: string | Date;
   endDate?: string | Date;
-  poster?: string;
+  poster: string;
 }
 
 const games: GameData[] = [
@@ -22,7 +22,7 @@ const games: GameData[] = [
     href: "/coin-flip",
     active: true,
     id: "coin_flip",
-    poster: "https://images.unsplash.com/photo-1621739165914-7155e5d4816e?w=1920"
+    poster: "/game/dice-roll.webp"
   },
   {
     name: "Dice Roll",
@@ -32,6 +32,7 @@ const games: GameData[] = [
     id: "dice_roll",
     startDate: "",
     endDate: "",
+    poster: "/game/dice-roll.webp"
   },
   {
     name: "Fortune Wheel",
@@ -41,6 +42,7 @@ const games: GameData[] = [
     id: "fortune_wheel",
     startDate: "",
     endDate: "",
+    poster: "/game/dice-roll.webp"
   },
   {
     name: "NFT Spin",
@@ -50,6 +52,7 @@ const games: GameData[] = [
     id: "nft_spin",
     startDate: "",
     endDate: "",
+    poster: "/game/dice-roll.webp"
   },
   {
     name: "Plinko",
@@ -59,6 +62,7 @@ const games: GameData[] = [
     id: "plinko",
     startDate: "",
     endDate: "",
+    poster: "/game/dice-roll.webp"
   },
 ];
 

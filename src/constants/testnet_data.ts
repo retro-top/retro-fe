@@ -25,7 +25,7 @@ const plinko = {
   ],
 };
 
-const coin_flip = {
+export const coin_flip = {
   module_address:
     "0xa9d210b09c69d13d8b4dabb9a95cf1f52f9749c62fd7d4561b5c3591609b42e8",
   resource_address:
@@ -44,7 +44,7 @@ const coin_flip = {
   ],
 };
 
-const fortune_wheel = {
+export const fortune_wheel = {
   module_address:
     "0xd21c40d0c0138f5e2904488c40ae5f01be47ba5a365f7412f53f146bd99cba04",
   resource_address:

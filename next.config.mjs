@@ -1,5 +1,9 @@
+import createMDX from "@next/mdx";
+import rehypeRaw from "rehype-raw";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  pageExtensions: ['mdx', 'ts', 'tsx'],
   images: {
     remotePatterns: [
       {
@@ -14,4 +18,8 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  rehypeRaw,
+});
+
+export default withMDX(nextConfig);
