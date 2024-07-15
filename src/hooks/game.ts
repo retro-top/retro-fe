@@ -23,6 +23,7 @@ const usePlay = <T>(game: ResourceType, defaultArguments?: any[]) => {
 
   const changeGameArguments = (newElemValue: any, index: number) => {
     setGameArguments((prevArgs) => {
+      if (prevArgs[index] === newElemValue) return prevArgs;
       const newArgs = [...prevArgs];
       newArgs[index] = newElemValue;
       return newArgs;
