@@ -5,27 +5,18 @@ import WheelOfFortune from "@/components/game/fortune-wheel/FortuneWheel";
 import usePlay from "@/hooks/game";
 import Game from "@/components/Game";
 import Dropdown from "@/components/basic/Dropdown";
-import { FortuneWheelConfig } from "@/interface/game.interface";
-import { fortune_wheel } from "@/constants/testnet_data";
-import {
-  FortuneWheelResponse,
-  TransactionEvent,
-} from "@/interface/response.interface";
 
 const CHANCES_OPTIONS = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
 
 const WheelOfFortunePage: React.FC = () => {
   const { gameArguments, changeGameArguments, configData, triggerGame } =
-    usePlay<FortuneWheelConfig>("fortune_wheel", ["1"]);
+    usePlay("fortune_wheel", ["1"]);
   const wheelRef = useRef<{ wheelRotate: () => void }>(null);
 
   const handlePlayClick = async () => {
     const gameResponse = await triggerGame();
-    const acceptedResponse = gameResponse.events.filter((item) =>
-      item.type.includes(fortune_wheel.module_address)
-    )[0] as TransactionEvent<FortuneWheelResponse>;
-
-    console.log(acceptedResponse.data.reward_tier);
+    
+    console.log(gameResponse?.data.reward_tier);
   };
 
   return (

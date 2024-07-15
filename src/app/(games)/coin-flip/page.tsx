@@ -5,13 +5,7 @@ import CoinToss from "@/components/game/coin-toss/Coin";
 import Dropdown from "@/components/basic/Dropdown";
 import usePlay from "@/hooks/game";
 import Game from "@/components/Game";
-import { coin_flip } from "@/constants/testnet_data";
-import { CoinFlipConfig } from "@/interface/game.interface";
 import Select from "@/components/basic/Select";
-import {
-  CoinFlipResponse,
-  TransactionEvent,
-} from "@/interface/response.interface";
 
 type Answer = 0 | 1;
 
@@ -22,17 +16,13 @@ const CHANCES_OPTIONS = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
 
 const Page = () => {
   const { configData, gameArguments, changeGameArguments, triggerGame } =
-    usePlay<CoinFlipConfig>("coin_flip", [HEAD_TAIL, BET_AMOUNT, CHANCES]);
+    usePlay("coin_flip", [HEAD_TAIL, BET_AMOUNT, CHANCES]);
 
   const coinTossRef = useRef<{ flipCoins: () => void }>(null);
 
   const handlePlayClick = async () => {
     const gameResponse = await triggerGame();
-    const acceptedResponse = gameResponse.events.filter((item) =>
-      item.type.includes(coin_flip.module_address)
-    )[0] as TransactionEvent<CoinFlipResponse>;
 
-    console.log(acceptedResponse.data);
   };
 
   return (

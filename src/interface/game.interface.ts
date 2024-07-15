@@ -1,9 +1,16 @@
+import {
+  CoinFlipResponse,
+  FortuneWheelResponse,
+  DiceRollResponse,
+  PlinkoResponse,
+} from "@/interface/response.interface";
+
 type NumberString = `${number}`;
 interface GameConfig {
   active: boolean;
 }
 
-export interface CoinFlipConfig {
+interface CoinFlipConfig {
   defy_coins_exchange_rate_heads: string;
   defy_coins_exchange_rate_tails: string;
   max_bet_amount_heads: string;
@@ -14,7 +21,7 @@ export interface CoinFlipConfig {
   win_multiplier_numerator: string;
 }
 
-export interface DiceRollConfig {
+interface DiceRollConfig {
   active: true;
   coin_balance: {
     value: NumberString;
@@ -25,7 +32,30 @@ export interface DiceRollConfig {
   min_bet_amount: NumberString;
 }
 
-export interface FortuneWheelConfig extends GameConfig {
+interface FortuneWheelConfig extends GameConfig {
   coin_reward_tiers_amounts: NumberString[];
   spin_fee: NumberString;
 }
+
+interface PlinkoConfig extends GameConfig {
+  //TODO
+}
+
+export type GameTypeMap = {
+  coin_flip: {
+    config: CoinFlipConfig;
+    response: CoinFlipResponse;
+  };
+  fortune_wheel: {
+    config: FortuneWheelConfig;
+    response: FortuneWheelResponse;
+  };
+  dice_roll: {
+    config: DiceRollConfig;
+    response: DiceRollResponse;
+  };
+  plinko: {
+    config: PlinkoConfig;
+    response: PlinkoResponse;
+  };
+};

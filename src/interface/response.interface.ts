@@ -35,6 +35,10 @@ export interface DiceRollResponse {
   total_bet_amount: string;
 }
 
+export interface PlinkoResponse {
+  // Will Updated
+}
+
 export interface TransactionEvent<T> {
   data: T;
   guid: {

@@ -3,7 +3,6 @@
 import Game from "@/components/Game";
 import DiceRoll from "@/components/game/Diceroll";
 import usePlay from "@/hooks/game";
-import { DiceRollConfig } from "@/interface/game.interface";
 import Dropdown from "@/components/basic/Dropdown";
 import { dice_roll } from "@/constants/testnet_data";
 import { DiceRollResponse, TransactionEvent } from "@/interface/response.interface";
@@ -33,7 +32,7 @@ const NUMBER_OF_TIME_USER_WANT_TO_PLAY = 1;
 
 const Page = () => {
   const { configData, gameArguments, changeGameArguments, triggerGame } =
-    usePlay<DiceRollConfig>("dice_roll", [
+    usePlay("dice_roll", [
       BET_TYPE,
       ARR,
       SIDE,
@@ -48,11 +47,8 @@ const Page = () => {
 
   const handlePlayClick = async () => {
     const gameResponse = await triggerGame();
-    const acceptedResponse = gameResponse.events.filter((item) =>
-      item.type.includes(dice_roll.module_address)
-    )[0] as TransactionEvent<DiceRollResponse>;
 
-    console.log(acceptedResponse.data);
+    console.log(gameResponse?.data);
   };
 
   return (
