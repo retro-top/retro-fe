@@ -1,21 +1,25 @@
-import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
+import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 
 type Answer = 0 | 1;
 
 interface CoinTossProps {
-  answers: Answer[];
   onTossComplete: (results: string[]) => void;
   totalCoins: number;
 }
 
-const CoinToss = forwardRef<{ flipCoins: () => void }, CoinTossProps>(({
-  answers,
+export interface CoinTossRef {
+  flipCoins: () => void;
+  setAnswers: (newAnswers: Answer[]) => void;
+}
+
+const CoinToss = forwardRef<CoinTossRef, CoinTossProps>(({
   onTossComplete,
   totalCoins,
 }, ref) => {
   const [isFlipping, setIsFlipping] = useState<boolean>(false);
   const [results, setResults] = useState<string[]>([]);
+  const answersRef = useRef<Answer[]>([]);
   const controls = useAnimation();
 
   const flipCoins = () => {
@@ -31,16 +35,21 @@ const CoinToss = forwardRef<{ flipCoins: () => void }, CoinTossProps>(({
 
     setTimeout(() => {
       setIsFlipping(false);
-      const newResults = answers.map((item) =>
-        item === 0 ? "heads" : "tails"
+      const newResults = answersRef.current.map((item) =>
+        item === 0 ? "GUI" : "ZAAP"
       );
       setResults(newResults);
       onTossComplete(newResults);
     }, 1500);
   };
 
+  const setAnswers = (newAnswers: Answer[]) => {
+    answersRef.current = newAnswers;
+  };
+
   useImperativeHandle(ref, () => ({
     flipCoins,
+    setAnswers,
   }));
 
   useEffect(() => {
