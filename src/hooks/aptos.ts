@@ -8,6 +8,7 @@ import {
 } from "@aptos-labs/wallet-adapter-react";
 import getNetwork from "../lib/network";
 import { useToast } from "@/components/basic/Toast";
+import { type ReturnType } from "@/constants/resource";
 
 const useAptosPlay = <T>(game: ResourceType) => {
   const { addToast } = useToast();
@@ -33,15 +34,20 @@ const useAptosPlay = <T>(game: ResourceType) => {
     (coins) => coins.coin_address
   );
 
-  const playGame = async (gameArguments: any[]) => {
+  const executeTransaction = async (
+    funString: ReturnType,
+    typeArguments: string[],
+    funArguments: any[]
+  ) => {
     if (!connected) {
       addToast("Please Connect the Wallet", "error");
     }
+
     const transaction: InputTransactionData = {
       data: {
-        function: resource[game].play(MODULE_ADDRESS),
-        typeArguments: [...SUPPORTED_COINS],
-        functionArguments: [...gameArguments],
+        function: funString,
+        typeArguments: typeArguments,
+        functionArguments: funArguments,
         // type: "entry_function_payload",
       },
     };
@@ -53,11 +59,38 @@ const useAptosPlay = <T>(game: ResourceType) => {
       });
 
       if (transactionResponse.success) setAccountHasList(true);
-      
+
       return transactionResponse;
     } catch (error) {
       console.error("Sign And Submit Error", error);
     }
+  };
+
+  const playGame = async (gameArguments: any[]) => {
+    const response = await executeTransaction(
+      resource[game].play(MODULE_ADDRESS),
+      [...SUPPORTED_COINS],
+      [...gameArguments]
+    );
+    return response;
+  };
+
+  const checkRewards = async () => {
+    const response = await executeTransaction(
+      resource[game].play(MODULE_ADDRESS),
+      [...SUPPORTED_COINS],
+      []
+    );
+    return response;
+  };
+
+  const claimRewards = async () => {
+    const response = await executeTransaction(
+      resource[game].play(MODULE_ADDRESS),
+      [...SUPPORTED_COINS],
+      []
+    );
+    return response;
   };
 
   useEffect(() => {
@@ -82,7 +115,7 @@ const useAptosPlay = <T>(game: ResourceType) => {
     fetchAccountResource(RESOURCE_ADDRESS, MODULE_ADDRESS, SUPPORTED_COINS);
   }, []);
 
-  return { configData, accountHasList, playGame };
+  return { configData, accountHasList, playGame, checkRewards, claimRewards };
 };
 
 export default useAptosPlay;

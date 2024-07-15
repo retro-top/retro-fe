@@ -1,4 +1,4 @@
-const dice_roll = {
+export const dice_roll = {
   module_address:
     "0xd21c40d0c0138f5e2904488c40ae5f01be47ba5a365f7412f53f146bd99cba04",
   resource_address:
@@ -11,7 +11,7 @@ const dice_roll = {
   ],
 };
 
-const plinko = {
+export const plinko = {
   module_address:
     "0xcfe66b0326b4194cd587234715ec9f6a81ec93321d50b3af042e771122b457af",
   resource_address:

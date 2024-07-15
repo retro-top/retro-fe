@@ -1,9 +1,42 @@
+export interface CoinFlipResponse {
+  amount_won: string;
+  bet_amount: string;
+  bet_multiplier_denominator: string;
+  bet_multiplier_numerator: string;
+  defy_coins_won: string;
+  heads_coin: string;
+  is_winner: boolean;
+  outcome_side: string;
+  player: string;
+  selected_side: string;
+  tales_coin: string;
+}
+
 export interface FortuneWheelResponse {
   player: string;
   reward_amount: string | number;
   reward_tier: string;
   reward_type: string;
   timestamp: string;
+}
+
+export interface DiceRollResponse {
+  amount_won: string;
+  bet_amounts: string[];
+  bet_multiplier: string;
+  bet_type: string;
+  coin_type: string;
+  defy_coins_won: string;
+  dice_one_value: string;
+  dice_two_value: string;
+  player: string;
+  side: boolean;
+  sum: string;
+  total_bet_amount: string;
+}
+
+export interface PlinkoResponse {
+  // Will Updated
 }
 
 export interface TransactionEvent<T> {

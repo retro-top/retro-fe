@@ -2,21 +2,52 @@ import { ResourceType } from "@/constants/resource";
 import useAptosPlay from "./aptos";
 import { useState } from "react";
 import { Transaction } from "@/interface/response.interface";
+import { useToast } from "@/components/basic/Toast";
+import testnet_data from "@/constants/testnet_data";
+import { GameTypeMap } from "@/interface/game.interface";
+import { TransactionEvent } from "@/interface/response.interface";
 
-const usePlay = <T>(game: ResourceType, defaultArguments?: any[]) => {
+const usePlay = <T extends keyof GameTypeMap>(
+  game: T,
+  defaultArguments?: any[]
+) => {
+  type Config = GameTypeMap[T]["config"];
+  type Response = GameTypeMap[T]["response"];
+
+  const { addToast } = useToast();
   const [gameArguments, setGameArguments] = useState<any[]>(
     defaultArguments || []
   );
-  const { configData, accountHasList, playGame } = useAptosPlay<T>(game);
+  const { configData, accountHasList, playGame, checkRewards, claimRewards } =
+    useAptosPlay<Config>(game);
 
-  const triggerGame = async () => {
-    const data = (await playGame(gameArguments)) as Transaction;
+  const triggerGame = async (): Promise<
+    TransactionEvent<Response> | undefined
+  > => {
+    if (!configData) {
+      addToast("No Config Data Found", "error");
+      return;
+    }
 
-    return data;
+    const gameResponse = (await playGame(gameArguments)) as Transaction;
+
+    if (!gameResponse) {
+      addToast("Transaction Failed", "error");
+      return;
+    }
+
+    console.log("Transaction Response", gameResponse);
+
+    const acceptedResponse = gameResponse.events.find((item) =>
+      item.type.includes(testnet_data[game].module_address)
+    ) as TransactionEvent<Response> | undefined;
+
+    return acceptedResponse;
   };
 
   const changeGameArguments = (newElemValue: any, index: number) => {
     setGameArguments((prevArgs) => {
+      if (prevArgs[index] === newElemValue) return prevArgs;
       const newArgs = [...prevArgs];
       newArgs[index] = newElemValue;
       return newArgs;
@@ -30,6 +61,8 @@ const usePlay = <T>(game: ResourceType, defaultArguments?: any[]) => {
     configData,
     accountHasList,
     triggerGame,
+    checkRewards,
+    claimRewards,
   };
 };
 
