@@ -5,7 +5,7 @@ type Props = {
 };
 
 const GameRoot: React.FC<Props> = ({ children }) => (
-  <section className="bg-primary-light min-h-[80vh] p-4 rounded flex flex-col-reverse md:flex-row">
+  <section className="bg-primary-light min-h-[50vh] md:min-h-[80vh] p-4 rounded flex flex-col-reverse md:flex-row">
     {children}
   </section>
 );

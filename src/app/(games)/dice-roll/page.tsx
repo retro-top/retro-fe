@@ -1,54 +1,33 @@
 "use client";
-
+import { useRef } from "react";
 import Game from "@/components/Game";
-import DiceRoll from "@/components/game/Diceroll";
+import DiceRoll, { type DiceRollRef } from "@/components/game/Diceroll";
 import usePlay from "@/hooks/game";
 import Dropdown from "@/components/basic/Dropdown";
-import { dice_roll } from "@/constants/testnet_data";
-import { DiceRollResponse, TransactionEvent } from "@/interface/response.interface";
+import { dice_roll_arguments } from "@/constants/default_value";
 
 const CHANCES_OPTIONS = Array.from({ length: 10 }, (_, i) =>
   (i + 1).toString()
 );
 
-const BET_TYPE = 0;
-const SIDE = true;
-const BET_AMOUNT_EVEN_ODD = 10000000;
-const ARR = [
-  "0", // bet for sum 2
-  "0", // bet for sum 3
-  "0", // bet for sum 4
-  "0", // bet for sum 5
-  "10000000", // bet for sum 6
-  "0", // bet for sum 7
-  "0", // bet for sum 8
-  "0", // bet for sum 9
-  "0", // bet for sum 10
-  "0", // bet for sum 11
-  "0", // bet for sum 12
-];
-
-const NUMBER_OF_TIME_USER_WANT_TO_PLAY = 1;
-
 const Page = () => {
+  const dicerollRef = useRef<DiceRollRef>(null);
   const { configData, gameArguments, changeGameArguments, triggerGame } =
-    usePlay("dice_roll", [
-      BET_TYPE,
-      ARR,
-      SIDE,
-      BET_AMOUNT_EVEN_ODD,
-      NUMBER_OF_TIME_USER_WANT_TO_PLAY,
-    ]);
-
-  const handleRollComplete = (results: [number, number]) => {
-  };
-
-  console.log("Config", configData);
+    usePlay("dice_roll", dice_roll_arguments);
 
   const handlePlayClick = async () => {
     const gameResponse = await triggerGame();
 
-    console.log(gameResponse);
+    console.log("Game Response", gameResponse);
+
+    if (gameResponse.length > 0 && gameResponse[0].data) {
+      const result = gameResponse[0].data;
+
+      dicerollRef.current?.updateDiceValues(
+        parseInt(result.dice_one_value),
+        parseInt(result.dice_two_value)
+      );
+    }
   };
 
   return (
@@ -71,7 +50,7 @@ const Page = () => {
           <button onClick={handlePlayClick}>Play</button>
         </Game.Sidebar>
         <Game.UI>
-          <DiceRoll onRollComplete={handleRollComplete} />
+          <DiceRoll ref={dicerollRef} />
         </Game.UI>
       </Game.Root>
     </main>
