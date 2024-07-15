@@ -18,7 +18,8 @@ const usePlay = <T extends keyof GameTypeMap>(
   const [gameArguments, setGameArguments] = useState<any[]>(
     defaultArguments || []
   );
-  const { configData, accountHasList, playGame } = useAptosPlay<Config>(game);
+  const { configData, accountHasList, playGame, checkRewards, claimRewards } =
+    useAptosPlay<Config>(game);
 
   const triggerGame = async (): Promise<
     TransactionEvent<Response> | undefined
@@ -60,6 +61,8 @@ const usePlay = <T extends keyof GameTypeMap>(
     configData,
     accountHasList,
     triggerGame,
+    checkRewards,
+    claimRewards,
   };
 };
 

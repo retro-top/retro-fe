@@ -15,14 +15,30 @@ const CHANCES = "1";
 const CHANCES_OPTIONS = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
 
 const Page = () => {
-  const { configData, gameArguments, changeGameArguments, triggerGame } =
-    usePlay("coin_flip", [HEAD_TAIL, BET_AMOUNT, CHANCES]);
+  const {
+    configData,
+    gameArguments,
+    changeGameArguments,
+    triggerGame,
+    checkRewards,
+    claimRewards,
+  } = usePlay("coin_flip", [HEAD_TAIL, BET_AMOUNT, CHANCES]);
 
   const coinTossRef = useRef<{ flipCoins: () => void }>(null);
 
   const handlePlayClick = async () => {
     const gameResponse = await triggerGame();
+    console.log(gameResponse);
+  };
 
+  const handleCheckRewards = async () => {
+    const response = await checkRewards();
+    console.log(response);
+  };
+
+  const handleClaimRewards = async () => {
+    const response = await claimRewards();
+    console.log(response);
   };
 
   return (
@@ -51,6 +67,8 @@ const Page = () => {
             defaultSelectedOption={gameArguments[0]}
           />
           <button onClick={handlePlayClick}>Flip Coin</button>
+          <button onClick={handleCheckRewards}>Check Rewards</button>
+          <button onClick={handleClaimRewards}>Claim Rewards</button>
         </Game.Sidebar>
         <Game.UI>
           <CoinToss

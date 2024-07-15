@@ -1,7 +1,7 @@
 import { use } from "react";
 import { coin_flip } from "./testnet_data";
 
-type ReturnType = `${string}::${string}::${string}`;
+export type ReturnType = `${string}::${string}::${string}`;
 
 const COIN_FLIP_COINX = coin_flip.supported_coins[0].coin_address;
 const COIN_FLIP_COINY = coin_flip.supported_coins[1].coin_address;
