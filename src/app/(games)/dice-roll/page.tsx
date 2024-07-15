@@ -48,7 +48,7 @@ const Page = () => {
   const handlePlayClick = async () => {
     const gameResponse = await triggerGame();
 
-    console.log(gameResponse?.data);
+    console.log(gameResponse);
   };
 
   return (

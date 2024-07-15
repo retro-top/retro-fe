@@ -22,25 +22,25 @@ const usePlay = <T extends keyof GameTypeMap>(
     useAptosPlay<Config>(game);
 
   const triggerGame = async (): Promise<
-    TransactionEvent<Response> | undefined
+    TransactionEvent<Response>[] | []
   > => {
     if (!configData) {
       addToast("No Config Data Found", "error");
-      return;
+      return [];
     }
 
     const gameResponse = (await playGame(gameArguments)) as Transaction;
 
     if (!gameResponse) {
       addToast("Transaction Failed", "error");
-      return;
+      return [];
     }
 
     console.log("Transaction Response", gameResponse);
 
-    const acceptedResponse = gameResponse.events.find((item) =>
+    const acceptedResponse = gameResponse.events.filter((item) =>
       item.type.includes(testnet_data[game].module_address)
-    ) as TransactionEvent<Response> | undefined;
+    ) as TransactionEvent<Response>[]
 
     return acceptedResponse;
   };

@@ -16,7 +16,7 @@ const WheelOfFortunePage: React.FC = () => {
   const handlePlayClick = async () => {
     const gameResponse = await triggerGame();
     
-    console.log(gameResponse?.data.reward_tier);
+    console.log(gameResponse);
   };
 
   return (
