@@ -52,7 +52,6 @@ const Page = () => {
     <Main>
       <Game.Root game={GAME_ID}>
         <Game.Sidebar>
-          <p>{reward}</p>
           <input
             value={gameArguments[1]}
             onChange={(e) => changeGameArguments(e.target.value, 1)}
@@ -75,6 +74,7 @@ const Page = () => {
             defaultSelectedOption={parseInt(gameArguments[0])}
           />
           <button onClick={handlePlayClick}>Flip Coin</button>
+          <p>{String(reward?.rewards_balance)}</p>
           <button onClick={handleClaimRewards}>Claim Rewards</button>
         </Game.Sidebar>
         <Game.UI>

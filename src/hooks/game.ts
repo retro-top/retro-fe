@@ -12,17 +12,16 @@ const usePlay = <T extends keyof GameTypeMap>(
 ) => {
   type Config = GameTypeMap[T]["config"];
   type Response = GameTypeMap[T]["response"];
+  type Reward = GameTypeMap[T]["reward"];
 
   const { addToast } = useToast();
   const [gameArguments, setGameArguments] = useState<any[]>(
     defaultArguments || []
   );
   const { configData, accountHasList, playGame, reward, claimRewards } =
-    useAptosPlay<Config>(game);
+    useAptosPlay<Config, Reward>(game);
 
-  const triggerGame = async (): Promise<
-    TransactionEvent<Response>[] | []
-  > => {
+  const triggerGame = async (): Promise<TransactionEvent<Response>[] | []> => {
     if (!configData) {
       addToast("No Config Data Found", "error");
       return [];
@@ -39,7 +38,7 @@ const usePlay = <T extends keyof GameTypeMap>(
 
     const acceptedResponse = gameResponse.events.filter((item) =>
       item.type.includes(testnet_data[game].module_address)
-    ) as TransactionEvent<Response>[]
+    ) as TransactionEvent<Response>[];
 
     return acceptedResponse;
   };

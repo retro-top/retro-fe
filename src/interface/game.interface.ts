@@ -4,8 +4,14 @@ import {
   DiceRollResponse,
   PlinkoResponse,
 } from "@/interface/response.interface";
+import {
+  CoinFlipReward,
+  DiceRollReward,
+  FortuneWheelReward,
+  PlinkoReward,
+} from "./reward.interface";
 
-type NumberString = `${number}`;
+export type NumberString = `${number}` | number | string;
 interface GameConfig {
   active: boolean;
 }
@@ -45,17 +51,21 @@ export type GameTypeMap = {
   coin_flip: {
     config: CoinFlipConfig;
     response: CoinFlipResponse;
+    reward: CoinFlipReward;
   };
   fortune_wheel: {
     config: FortuneWheelConfig;
     response: FortuneWheelResponse;
+    reward: FortuneWheelReward;
   };
   dice_roll: {
     config: DiceRollConfig;
     response: DiceRollResponse;
+    reward: DiceRollReward;
   };
   plinko: {
     config: PlinkoConfig;
     response: PlinkoResponse;
+    reward: PlinkoReward;
   };
 };

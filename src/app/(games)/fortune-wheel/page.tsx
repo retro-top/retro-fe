@@ -37,7 +37,8 @@ const WheelOfFortunePage: React.FC = () => {
     <Main>
       <Game.Root game={GAME_ID}>
         <Game.Sidebar>
-          <p>{reward}</p>
+        <p>{reward?.coin.value}</p>
+
           <Dropdown
             options={CHANCES_OPTIONS}
             onSelect={(opt) => {

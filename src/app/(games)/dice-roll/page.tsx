@@ -49,7 +49,6 @@ const Page = () => {
     <Main>
       <Game.Root game={GAME_ID}>
         <Game.Sidebar>
-          <p>{reward}</p>
           <input
             value={gameArguments[3]}
             onChange={(e) => changeGameArguments(e.target.value, 3)}
@@ -64,6 +63,7 @@ const Page = () => {
             defaultSelectedOption={0}
           />
           <button onClick={handlePlayClick}>Play</button>
+          <p>{reward?.rewards_balance.value}</p>
           <button onClick={handleClaimRewards}>Claim Rewards</button>
         </Game.Sidebar>
         <Game.UI>

@@ -25,7 +25,7 @@ const Page = () => {
     <Main>
       <Game.Root game={GAME_ID}>
         <Game.Sidebar>
-          {reward}
+          <p>{reward?.rewards_balance.value}</p>
           <button onClick={() => triggerGame()}>Play</button>
           <button onClick={handleClaimRewards}>Claim Rewards</button>
         </Game.Sidebar>

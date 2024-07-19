@@ -10,11 +10,11 @@ const Footer: React.FC = () => {
           <div key={index} className="mb-4 sm:mb-0">
             <h3 className="mb-2 font-semibold">{option.heading}</h3>
             <ul>
-              {option.options.map((item) => (
+              {option.options.map((item, index) => (
                 <FooterOption
                   href={item.href}
                   text={item.text}
-                  key={item.href}
+                  key={index}
                 />
               ))}
             </ul>

@@ -5,11 +5,11 @@ import Sidebar from "@/components/navbar/sidebar/Sidebar";
 import TopNavBar from "@/components/navbar/TopNavBar";
 import RootLayoutProvider from "@/providers/RootLayoutProvider";
 import Footer from "@/components/footer/Footer";
+import AnimateProvider from "@/providers/AnimateProvider";
 import "./globals.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import AnimateProvider from "@/providers/AnimateProvider";
 
 const font = DisplayFont({
   subsets: ["latin"],
