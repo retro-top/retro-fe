@@ -1,13 +1,27 @@
 "use client";
 
 import React, { forwardRef, useState, useImperativeHandle } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { IoTriangleSharp } from "react-icons/io5";
-import usePlay from "@/hooks/aptos";
+import Wheel from "./Wheel";
+
+const colors = [
+  "#D03A3A", // Red
+  "#808080", // Gray
+  "#008000", // Green
+  "#D03A3A", // Red
+  "#808080", // Gray
+  "#008000", // Green
+  "#D03A3A", // Red
+  "#808080", // Gray
+  "#008000", // Green
+  "#D03A3A", // Red
+  "#808080", // Gray
+  "#008000", // Green
+  "#4B0082", // Indigo
+];
 
 const WheelOfFortune = forwardRef((props, ref) => {
-  const { configData, accountHasList, playGame } = usePlay("fortune_wheel");
   const [rotation, setRotation] = useState(0);
 
   useImperativeHandle(ref, () => ({
@@ -15,31 +29,19 @@ const WheelOfFortune = forwardRef((props, ref) => {
   }));
 
   const handleClick = async () => {
-    // const play = await playGame([7]);
-    // console.log(play);
-    setRotation((prev) => prev + 810); // Increment to continue rotation
+    setRotation((prev) => prev + 810);
   };
 
   return (
-    <div className="relative w-80 h-80">
-      <div className="rounded-full relative">
-        <motion.div
-          className="flex items-center justify-center text-white font-bold"
-          initial={{ rotate: 0 }}
-          animate={{ rotate: rotation }}
-          transition={{ duration: 5, ease: "easeInOut" }}
-        >
-          <Image
-            src="/wheel.png"
-            alt="Wheel of Fortune"
-            width={500}
-            height={500}
-          />
-        </motion.div>
-        <div className="absolute bottom-6 left-[9.5rem]">
-          <IoTriangleSharp color="#FF0000" />
-        </div>
-      </div>
+    <div className="relative">
+      <motion.div
+        className="flex items-center justify-center text-white font-bold"
+        initial={{ rotate: 0 }}
+        animate={{ rotate: rotation }}
+        transition={{ duration: 5, ease: "easeInOut" }}
+      >
+        <Wheel colors={colors} size={300} />
+      </motion.div>
     </div>
   );
 });

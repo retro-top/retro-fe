@@ -22,9 +22,10 @@ const WheelOfFortunePage: React.FC = () => {
   const wheelRef = useRef<{ wheelRotate: () => void }>(null);
 
   const handlePlayClick = async () => {
-    const gameResponse = await triggerGame();
+    // const gameResponse = await triggerGame();
 
-    console.log(gameResponse);
+    // console.log(gameResponse);
+    wheelRef.current?.wheelRotate();
   };
 
   const handleClaimRewards = async () => {
