@@ -7,9 +7,11 @@ import usePlay from "@/hooks/game";
 import Game from "@/components/Game";
 import Select from "@/components/basic/Select";
 import { CoinTossRef } from "@/components/game/coin-toss/Coin";
+import Main from "@/components/basic/Main";
 
 type Answer = 0 | 1;
 
+const GAME_ID = "coin_flip";
 const BET_AMOUNT = "100000000000";
 const HEAD_TAIL = "0"; // 0-> heads /gui, 1-> tails / fomo
 const CHANCES = "1";
@@ -17,13 +19,13 @@ const CHANCES_OPTIONS = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
 
 const Page = () => {
   const {
+    reward,
     configData,
     gameArguments,
     changeGameArguments,
     triggerGame,
-    checkRewards,
     claimRewards,
-  } = usePlay("coin_flip", [HEAD_TAIL, BET_AMOUNT, CHANCES]);
+  } = usePlay(GAME_ID, [HEAD_TAIL, BET_AMOUNT, CHANCES]);
 
   const coinTossRef = useRef<CoinTossRef>(null);
 
@@ -31,7 +33,7 @@ const Page = () => {
     const gameResponse = await triggerGame();
     console.log("Game Response", gameResponse);
 
-    if(gameResponse.length > 0) {
+    if (gameResponse.length > 0) {
       const winnerList = gameResponse.map((item) =>
         item.data.is_winner ? 0 : 1
       );
@@ -40,21 +42,17 @@ const Page = () => {
     }
   };
 
-  const handleCheckRewards = async () => {
-    const response = await checkRewards();
-    console.log(response);
-  };
-
   const handleClaimRewards = async () => {
-    // const response = await claimRewards();
-    // console.log(response);
-    console.log(gameArguments)
+    const response = await claimRewards();
+    console.log(response);
+    // console.log(gameArguments)
   };
 
   return (
-    <main>
-      <Game.Root>
+    <Main>
+      <Game.Root game={GAME_ID}>
         <Game.Sidebar>
+          <p>{reward}</p>
           <input
             value={gameArguments[1]}
             onChange={(e) => changeGameArguments(e.target.value, 1)}
@@ -77,7 +75,6 @@ const Page = () => {
             defaultSelectedOption={parseInt(gameArguments[0])}
           />
           <button onClick={handlePlayClick}>Flip Coin</button>
-          <button onClick={handleCheckRewards}>Check Rewards</button>
           <button onClick={handleClaimRewards}>Claim Rewards</button>
         </Game.Sidebar>
         <Game.UI>
@@ -88,7 +85,7 @@ const Page = () => {
           />
         </Game.UI>
       </Game.Root>
-    </main>
+    </Main>
   );
 };
 

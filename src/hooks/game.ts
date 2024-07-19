@@ -1,4 +1,3 @@
-import { ResourceType } from "@/constants/resource";
 import useAptosPlay from "./aptos";
 import { useState } from "react";
 import { Transaction } from "@/interface/response.interface";
@@ -18,7 +17,7 @@ const usePlay = <T extends keyof GameTypeMap>(
   const [gameArguments, setGameArguments] = useState<any[]>(
     defaultArguments || []
   );
-  const { configData, accountHasList, playGame, checkRewards, claimRewards } =
+  const { configData, accountHasList, playGame, reward, claimRewards } =
     useAptosPlay<Config>(game);
 
   const triggerGame = async (): Promise<
@@ -61,7 +60,7 @@ const usePlay = <T extends keyof GameTypeMap>(
     configData,
     accountHasList,
     triggerGame,
-    checkRewards,
+    reward,
     claimRewards,
   };
 };

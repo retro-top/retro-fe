@@ -3,12 +3,15 @@
 import React from "react";
 import Game from "@/components/Game";
 import { useToast } from "@/components/basic/Toast";
+import Main from "@/components/basic/Main";
+
+const GAME_ID = 'nft_spin';
 
 const Page = () => {
   const { addToast } = useToast();
 
   return (
-    <main>
+    <Main>
       <Game.Root>
         <Game.Sidebar>
           <button onClick={() => addToast("this success is msg", "success")}>
@@ -23,7 +26,7 @@ const Page = () => {
         </Game.Sidebar>
         <Game.UI>Will Updated Soon</Game.UI>
       </Game.Root>
-    </main>
+    </Main>
   );
 };
 

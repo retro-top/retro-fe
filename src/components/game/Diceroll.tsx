@@ -23,7 +23,7 @@ const Diceroll = forwardRef<DiceRollRef, {}>((props, ref) => {
   }));
 
   return (
-    <div className="flex gap-8">
+    <div className="flex gap-8 dice-game">
       <Dice size={DICE_SIZE} ref={dice1Ref} />
       <Dice size={DICE_SIZE} ref={dice2Ref} />
     </div>

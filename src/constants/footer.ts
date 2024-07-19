@@ -43,9 +43,6 @@ Retro.top, an innovative online gaming platform built on the Aptos Network. At R
 To participate in these games and unlock rewards, you will need tokens. Tokens are essential for playing any game on Retro.top, and they add an extra layer of excitement as you compete for valuable prizes. Our platform ensures a fair and transparent gaming environment, where everyone has an equal chance to win.
 
 At Retro.top, we prioritize responsible gaming. We encourage all our players to play carefully and with a free, open mind. It's important to remember that while the games are designed for entertainment, they should be enjoyed responsibly. Set limits for yourself, take breaks, and avoid chasing losses. Our goal is to create a fun and enjoyable experience for everyone, and responsible gaming is a key part of that mission.
-
-1 APT = $5.66
-© 2024 retro.top | All Rights Reserved
 `;
 
 export default footer;

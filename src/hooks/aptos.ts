@@ -1,5 +1,8 @@
 import { Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk";
-import resource, { ResourceType } from "@/constants/resource";
+import resource, {
+  type ResourceType,
+  type ReturnType,
+} from "@/constants/resource";
 import testnet_data from "@/constants/testnet_data";
 import { useEffect, useState } from "react";
 import {
@@ -8,7 +11,8 @@ import {
 } from "@aptos-labs/wallet-adapter-react";
 import getNetwork from "../lib/network";
 import { useToast } from "@/components/basic/Toast";
-import { type ReturnType } from "@/constants/resource";
+
+type Coin = { coin: { value: string } };
 
 const useAptosPlay = <T>(game: ResourceType) => {
   const { addToast } = useToast();
@@ -19,6 +23,7 @@ const useAptosPlay = <T>(game: ResourceType) => {
 
   const [configData, setConfigData] = useState<T>();
   const [accountHasList, setAccountHasList] = useState(false);
+  const [reward, setReward] = useState<string | number>(0);
 
   const { wallet, connected, signAndSubmitTransaction } = useWallet();
 
@@ -58,7 +63,10 @@ const useAptosPlay = <T>(game: ResourceType) => {
         transactionHash: response.hash,
       });
 
-      if (transactionResponse.success) setAccountHasList(true);
+      if (transactionResponse.success) {
+        await checkRewards();
+        setAccountHasList(true);
+      }
 
       return transactionResponse;
     } catch (error) {
@@ -76,20 +84,33 @@ const useAptosPlay = <T>(game: ResourceType) => {
   };
 
   const checkRewards = async () => {
-    const response = await executeTransaction(
-      resource[game].play(MODULE_ADDRESS),
-      [...SUPPORTED_COINS],
-      []
-    );
-    return response;
+    const resp = await aptos.getAccountResource<Coin>({
+      accountAddress: MODULE_ADDRESS,
+      resourceType: resource[game].user_rewards(
+        MODULE_ADDRESS,
+        SUPPORTED_COINS[0]
+      ),
+    });
+
+    setReward(resp.coin.value);
   };
 
   const claimRewards = async () => {
-    const response = await executeTransaction(
-      resource[game].play(MODULE_ADDRESS),
-      [...SUPPORTED_COINS],
-      []
+    const modifiedCoins = [...SUPPORTED_COINS];
+    const desiredLength = 5;
+    modifiedCoins.length = desiredLength;
+    modifiedCoins.fill(
+      "0x1::string::String",
+      SUPPORTED_COINS.length,
+      desiredLength
     );
+
+    const response = await executeTransaction(
+      resource[game].claim(MODULE_ADDRESS),
+      modifiedCoins,
+      ["2"]
+    );
+
     return response;
   };
 
@@ -115,7 +136,7 @@ const useAptosPlay = <T>(game: ResourceType) => {
     fetchAccountResource(RESOURCE_ADDRESS, MODULE_ADDRESS, SUPPORTED_COINS);
   }, []);
 
-  return { configData, accountHasList, playGame, checkRewards, claimRewards };
+  return { configData, accountHasList, playGame, reward, claimRewards };
 };
 
 export default useAptosPlay;

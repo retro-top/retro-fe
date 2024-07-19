@@ -1,12 +1,24 @@
 import React from "react";
+import { GameHeadingType } from "@/constants/games";
+import { ResourceType } from "@/constants/resource";
+import { game_heading } from "@/constants/games";
 
 type Props = {
   children: React.ReactNode;
 };
 
-const GameRoot: React.FC<Props> = ({ children }) => (
-  <section className="bg-primary-light min-h-[50vh] md:min-h-[80vh] p-4 rounded flex flex-col-reverse md:flex-row">
-    {children}
+type HeadingProps = { heading: GameHeadingType };
+
+interface RootProps extends Props {
+  game?: ResourceType;
+}
+
+const GameRoot: React.FC<RootProps> = ({ children, game }) => (
+  <section>
+    <div className="bg-primary-light min-h-[50vh] md:min-h-[75vh] p-4 rounded flex flex-col-reverse md:flex-row">
+      {children}
+    </div>
+    {game && <GameHeading heading={game_heading[game]} />}
   </section>
 );
 
@@ -21,6 +33,15 @@ const GameUI: React.FC<Props> = ({ children }) => (
     {children}
   </div>
 );
+
+const GameHeading: React.FC<HeadingProps> = ({ heading }) => {
+  return (
+    <div className="bg-primary-light p-4 rounded">
+      <h1 className="text-base">{heading.title}</h1>
+      <p>{heading.description}</p>
+    </div>
+  );
+};
 
 const Game = {
   Root: GameRoot,

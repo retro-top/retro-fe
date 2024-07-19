@@ -66,7 +66,7 @@ input[type="number"] {
   }
 
   p {
-    @apply text-xs md:text-sm;
+    @apply text-xs md:text-sm text-slate-500 text-justify md:text-left;
   }
 
   input {
@@ -98,31 +98,16 @@ img {
   @apply max-w-44 max-h-44;
 }
 
-.wallet-selector-modal {
+.MuiButtonBase-root {
+  p {
+    @apply text-white;
+  }
 }
-.wallet-selector-icon {
-}
-.wallet-selector-text {
-}
-.wallet-menu-wrapper {
-}
-.wallet-name-wrapper {
-}
-.wallet-connect-button {
-}
-.wallet-connect-install {
-}
+
 .wallet-button {
+  @apply !p-2 !px-4 text-white !bg-secondary hover:!bg-secondary-light !rounded shadow transition !text-sm;
 }
-.wallet-modal-title {
-}
-.aptos-connect-button {
-}
-.aptos-connect-privacy-policy-wrapper {
-}
-.aptos-connect-privacy-policy-text {
-}
-.aptos-connect-privacy-policy-link {
-}
-.aptos-connect-powered-by {
+
+.dice-game > button {
+  @apply !bg-transparent
 }

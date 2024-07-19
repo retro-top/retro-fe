@@ -22,11 +22,11 @@ const Footer: React.FC = () => {
         ))}
       </div>
       <div className="mt-6 border-t border-gray-700 pt-4">
-        <p className="text-xs text-justify md:text-left sm:text-left">{companyInfo}</p>
+        <p>{companyInfo}</p>
       </div>
       <div className="mt-4 flex flex-col sm:flex-row justify-between items-center">
-        <span className="mb-2 sm:mb-0">1 ETH = $3,046.03</span>
-        <span>© 2024 Aptos-Gamble.com | All Rights Reserved</span>
+        <span className="mb-2 sm:mb-0">1 APT = $5.66</span>
+        <span>© 2024 retro.top | All Rights Reserved</span>
       </div>
     </footer>
   );

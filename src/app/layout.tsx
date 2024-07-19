@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Archivo as DisplayFont } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Sidebar from "@/components/navbar/sidebar/Sidebar";
 import TopNavBar from "@/components/navbar/TopNavBar";
@@ -9,8 +9,9 @@ import "./globals.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import AnimateProvider from "@/providers/AnimateProvider";
 
-const font = Inter({
+const font = DisplayFont({
   subsets: ["latin"],
   weight: ["200", "300", "400", "600", "700", "900"],
 });
@@ -35,7 +36,7 @@ export default function RootLayout({
           <TopNavBar />
           <Sidebar />
           <div className="overflow-y-scroll h-[calc(100vh-3.5rem)]">
-            {children}
+            <AnimateProvider>{children}</AnimateProvider>
             <Footer />
           </div>
         </RootLayoutProvider>

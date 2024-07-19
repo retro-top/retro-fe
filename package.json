@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@aptos-labs/ts-sdk": "^1.24.0",
-    "@aptos-labs/wallet-adapter-ant-design": "^3.0.1",
-    "@aptos-labs/wallet-adapter-react": "^3.5.1",
+    "@aptos-labs/ts-sdk": "^1.26.0",
+    "@aptos-labs/wallet-adapter-mui-design": "^3.0.2",
+    "@aptos-labs/wallet-adapter-react": "^3.5.2",
     "@dnd-kit/core": "^6.1.0",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
@@ -19,7 +19,7 @@
     "@next/third-parties": "^14.2.5",
     "@react-hook/window-size": "^3.1.1",
     "@types/mdx": "^2.0.13",
-    "framer-motion": "^11.3.2",
+    "framer-motion": "^11.3.7",
     "next": "14.2.5",
     "petra-plugin-wallet-adapter": "^0.4.5",
     "react": "^18",
@@ -27,7 +27,7 @@
     "react-dom": "^18",
     "react-icons": "^5.2.1",
     "rehype-raw": "^7.0.0",
-    "swiper": "^11.1.4"
+    "swiper": "^11.1.5"
   },
   "devDependencies": {
     "@types/node": "^20",
