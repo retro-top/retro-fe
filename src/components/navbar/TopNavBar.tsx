@@ -7,7 +7,7 @@ import Image from "next/image";
 const TopNavBar = () => {
   return (
     <nav className="bg-primary-light flex items-center justify-between px-4 border border-gray-800 h-14">
-      <Image height={120} width={120} alt="logo" src={"/logo.svg"} />
+      <Image height={110} width={110} alt="logo" src={"/logo.png"} />
       <WalletConnector />
     </nav>
   );

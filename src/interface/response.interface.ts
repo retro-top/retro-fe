@@ -36,7 +36,13 @@ export interface DiceRollResponse {
 }
 
 export interface PlinkoResponse {
-  // Will Updated
+  amount_won: string;
+  ball_path: string[];
+  bet_amount: string;
+  coin_type: string;
+  defy_coins_won: string;
+  multiplier: string;
+  player: string;
 }
 
 export interface TransactionEvent<T> {
