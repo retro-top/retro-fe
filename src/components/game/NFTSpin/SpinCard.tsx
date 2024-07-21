@@ -29,7 +29,7 @@ const SpinCard = ({ active, size, index }: SpinCardProps) => {
       const leftIndex = index - (2 * WIDTH + HEIGHT - 3);
       return `${HEIGHT - leftIndex} / 1 / ${HEIGHT - leftIndex + 1} / 2`;
     }
-  }, []);
+  }, [HEIGHT, WIDTH]);
 
   return (
     <motion.div

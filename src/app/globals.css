@@ -73,6 +73,10 @@ input[type="number"] {
     @apply outline-none border text-sm border-gray-800 p-2 rounded bg-transparent;
   }
 
+  label {
+    @apply text-xs md:text-sm text-gray-500 select-none font-extralight;
+  }
+
   .text-balance {
     text-wrap: balance;
   }

@@ -50,6 +50,8 @@ const Page = () => {
               changeGameArguments(CHANCES_OPTIONS[opt], 1);
             }}
             defaultSelectedOption={0}
+            label="Chances"
+            about="The number of chances you have to win the game."
           />
           <button onClick={handlePlayClick}>Play</button>
           <button onClick={handleClaimRewards}>Claim Rewards</button>

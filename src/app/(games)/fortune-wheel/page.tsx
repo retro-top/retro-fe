@@ -38,8 +38,7 @@ const WheelOfFortunePage: React.FC = () => {
     <Main>
       <Game.Root game={GAME_ID}>
         <Game.Sidebar>
-        <p>{reward?.coin.value}</p>
-
+          <p>{reward?.coin.value}</p>
           <Dropdown
             options={CHANCES_OPTIONS}
             onSelect={(opt) => {
@@ -47,6 +46,8 @@ const WheelOfFortunePage: React.FC = () => {
               console.log(gameArguments);
             }}
             defaultSelectedOption={0}
+            label="Chances"
+            about="The number of chances you have to win the game."
           />
           <button onClick={handlePlayClick} disabled={!configData?.active}>
             Spin

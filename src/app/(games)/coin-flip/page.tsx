@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import CoinToss from "@/components/game/coin-toss/Coin";
 import Dropdown from "@/components/basic/Dropdown";
 import usePlay from "@/hooks/game";
@@ -8,6 +8,9 @@ import Game from "@/components/Game";
 import Select from "@/components/basic/Select";
 import { CoinTossRef } from "@/components/game/coin-toss/Coin";
 import Main from "@/components/basic/Main";
+import Input from "@/components/basic/Input";
+import { validateNumberString } from "@/utils/alert";
+import { useToast } from "@/components/basic/Toast";
 
 type Answer = 0 | 1;
 
@@ -18,6 +21,9 @@ const CHANCES = "1";
 const CHANCES_OPTIONS = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
 
 const Page = () => {
+  const [alert, setAlert] = useState<string>("");
+  const { addToast } = useToast();
+
   const {
     reward,
     configData,
@@ -30,6 +36,26 @@ const Page = () => {
   const coinTossRef = useRef<CoinTossRef>(null);
 
   const handlePlayClick = async () => {
+    if (!configData) {
+      addToast("Game is Not Started", "error");
+      return;
+    }
+    const validate = validateNumberString(
+      parseInt(gameArguments[1]),
+      configData?.min_bet_amount_heads,
+      configData?.max_bet_amount_heads
+    );
+
+    if(validate.error) {
+      addToast(validate.error, "error");
+      return;
+    }
+
+    if (validate.warning) {
+      setAlert(validate.warning);
+      return;
+    }
+
     const gameResponse = await triggerGame();
     console.log("Game Response", gameResponse);
 
@@ -52,12 +78,16 @@ const Page = () => {
     <Main>
       <Game.Root game={GAME_ID}>
         <Game.Sidebar>
-          <input
+          <Input
             value={gameArguments[1]}
             onChange={(e) => changeGameArguments(e.target.value, 1)}
             type="number"
             placeholder="Enter the Amount"
+            label="Amount"
+            about={`Enter the amount you want to bet Min: ${configData?.min_bet_amount_heads}\n Max: ${configData?.max_bet_amount_heads}`}
+            alert={alert}
           />
+
           <Dropdown
             options={CHANCES_OPTIONS}
             onSelect={(opt) => {
@@ -65,6 +95,8 @@ const Page = () => {
               console.log(gameArguments);
             }}
             defaultSelectedOption={0}
+            label="Chances"
+            about="Select the number of chances you want to play"
           />
           <Select
             options={["GUI", "ZAAP"]}

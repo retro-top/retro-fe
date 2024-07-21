@@ -7,6 +7,8 @@ import React, {
 } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { FiAlertCircle } from "react-icons/fi";
+import Label from "./Label";
 
 interface DropdownProps {
   options: string[] | React.ReactNode[];
@@ -14,9 +16,14 @@ interface DropdownProps {
   defaultSelectedOption?: number;
   placeholder?: string;
   maxHeight?: number;
+  label?: string;
+  about?: string;
+  alert?: string;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
+  label = "",
+  about = "",
   options,
   onSelect,
   defaultSelectedOption = -1,
@@ -81,7 +88,8 @@ const Dropdown: React.FC<DropdownProps> = ({
   }, [isOpen, maxHeight]);
 
   return (
-    <div className="relative w-full" ref={dropdownRef}>
+    <div className="relative w-full flex flex-col" ref={dropdownRef}>
+      <Label about={about} label={label} />
       <button
         aria-haspopup="listbox"
         aria-expanded={isOpen}
