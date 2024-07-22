@@ -26,7 +26,9 @@ const Sidebar: React.FC = () => {
       <>
         {navbars.map((navbar, navbarIndex: number) => (
           <div
-            className="p-4 border-t-2 md:border-t-0 md:border-r-0 md:border border-gray-800"
+            className={`p-4 md:border-r-1 border-gray-800 ${
+              navbars.length - 1 === navbarIndex ? "" : "border-b"
+            }`}
             key={navbarIndex}
           >
             <h1 className="text-sm font-semibold pb-2 select-none">

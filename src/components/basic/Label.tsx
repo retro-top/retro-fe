@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FiAlertCircle } from 'react-icons/fi';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiAlertCircle } from "react-icons/fi";
+import { useWindowWidth } from "@react-hook/window-size";
 
 interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
   label: string;
@@ -8,11 +9,12 @@ interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
 }
 
 const Label: React.FC<LabelProps> = ({ label, about, ...props }) => {
+  const width = useWindowWidth();
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   return (
     <div className="relative inline-block">
-      <label className="flex items-center" {...props}>
+      <label className="flex items-center mb-1" {...props}>
         {label}
         {about && (
           <span
@@ -20,7 +22,7 @@ const Label: React.FC<LabelProps> = ({ label, about, ...props }) => {
             onMouseEnter={() => setIsTooltipVisible(true)}
             onMouseLeave={() => setIsTooltipVisible(false)}
           >
-            <FiAlertCircle size={16} />
+            <FiAlertCircle size={width < 700 ? 14 : 15} />
             <AnimatePresence>
               {isTooltipVisible && (
                 <motion.div

@@ -4,7 +4,6 @@ import { GiCartwheel } from "react-icons/gi";
 import { PiSpinnerBold } from "react-icons/pi";
 import { GoDotFill } from "react-icons/go";
 import { ResourceType as GameID } from "./resource";
-import { coin_flip, fortune_wheel } from "./testnet_data";
 
 export type GameHeadingType = {
   title: string;
@@ -27,7 +26,7 @@ const games: GameData[] = [
     icon: <PiCoinsDuotone size={16} />,
     href: "/coin-flip",
     active: true,
-    poster: "/game/dice-roll.webp",
+    poster: "/posters/coin-flip.webp",
   },
   {
     name: "Dice Roll",
@@ -35,7 +34,7 @@ const games: GameData[] = [
     href: "/dice-roll",
     active: true,
     id: "dice_roll",
-    poster: "/game/dice-roll.webp",
+    poster: "/posters/dice-roll.webp",
   },
   {
     name: "Fortune Wheel",
@@ -43,7 +42,7 @@ const games: GameData[] = [
     href: "/fortune-wheel",
     active: true,
     id: "fortune_wheel",
-    poster: "/game/dice-roll.webp",
+    poster: "/posters/fortune-wheel.webp",
   },
   {
     name: "NFT Spin",
@@ -51,7 +50,7 @@ const games: GameData[] = [
     href: "/nft-spin",
     active: false,
     id: "nft_spin",
-    poster: "/game/dice-roll.webp",
+    poster: "/posters/nft-spin.webp",
   },
   {
     name: "Plinko",
@@ -59,7 +58,7 @@ const games: GameData[] = [
     href: "/plinko",
     active: true,
     id: "plinko",
-    poster: "/game/dice-roll.webp",
+    poster: "/posters/plinko.webp",
   },
 ];
 
