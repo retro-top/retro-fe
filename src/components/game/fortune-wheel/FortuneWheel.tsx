@@ -2,7 +2,6 @@
 
 import React, { forwardRef, useState, useImperativeHandle } from "react";
 import { motion } from "framer-motion";
-import { IoTriangleSharp } from "react-icons/io5";
 import Wheel from "./Wheel";
 
 const colors = [
@@ -21,6 +20,15 @@ const colors = [
   "#4B0082", // Indigo
 ];
 
+const colorWithValue = [
+  { color: "#D03A3A", value: '0.8' },
+  { color: "#808080", value: '0.9' },
+  { color: "#008000", value: '1.0'},
+  { color: "#4B0082", value: '0.8' },
+];
+
+const SIZE = 300;
+
 const WheelOfFortune = forwardRef((props, ref) => {
   const [rotation, setRotation] = useState(0);
 
@@ -35,13 +43,29 @@ const WheelOfFortune = forwardRef((props, ref) => {
   return (
     <div className="relative">
       <motion.div
-        className="flex items-center justify-center text-white font-bold"
+        className="flex items-center justify-center text-white font-bold m-4"
         initial={{ rotate: 0 }}
         animate={{ rotate: rotation }}
         transition={{ duration: 5, ease: "easeInOut" }}
+        style={{ width: SIZE, height: SIZE }}
       >
-        <Wheel colors={colors} size={300} />
+        <Wheel colors={colors} size={SIZE} />
       </motion.div>
+      <div className="flex gap-2 justify-center">
+        {colorWithValue.map((item, index) => {
+          return (
+            <div
+              className="px-3 py-2 text-white font-bold bg-primary border-0 rounded text-sm md:text-base"
+              style={{
+                borderBottom: `3px solid ${item.color}`,
+              }}
+              key={index}
+            >
+              {item.value}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 });
