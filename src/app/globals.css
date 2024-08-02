@@ -21,6 +21,15 @@ input[type="number"] {
 }
 
 @layer utilities {
+  .list-circle {
+    list-style-type: circle;
+  }
+  .list-square {
+    list-style-type: square;
+  }
+}
+
+@layer components {
   body {
     @apply overflow-hidden text-white;
   }
@@ -46,23 +55,23 @@ input[type="number"] {
   }
 
   h1 {
-    @apply text-2xl md:text-3xl lg:text-4xl font-semibold;
+    @apply text-2xl md:text-2xl font-semibold;
   }
 
   h2 {
-    @apply text-xl md:text-2xl lg:text-3xl font-semibold;
+    @apply text-xl md:text-xl font-semibold;
   }
 
   h3 {
-    @apply text-lg md:text-xl lg:text-2xl font-semibold;
+    @apply text-lg md:text-lg font-semibold;
   }
 
   h4 {
-    @apply text-base md:text-lg lg:text-xl font-semibold;
+    @apply text-base md:text-base font-semibold;
   }
 
   h5 {
-    @apply text-sm md:text-base lg:text-lg font-semibold;
+    @apply text-sm md:text-sm font-semibold;
   }
 
   p {
@@ -70,16 +79,32 @@ input[type="number"] {
   }
 
   input {
-    @apply outline-none border text-sm border-gray-800 p-2 rounded bg-transparent;
+    @apply w-full outline-none border text-sm border-gray-800 p-2 rounded bg-transparent;
   }
 
   label {
     @apply text-xs md:text-sm text-gray-500 select-none font-extralight;
   }
 
-  .text-balance {
-    text-wrap: balance;
+  ul {
+    @apply list-disc list-inside;
   }
+
+  ul ul {
+    @apply list-circle ml-4 md:ml-6 lg:ml-8;
+  }
+
+  ul ul ul {
+    @apply list-square ml-4 md:ml-6 lg:ml-8;
+  }
+
+  li {
+    @apply mb-2;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
 }
 
 img {
@@ -91,40 +116,13 @@ img {
 }
 
 .swiper {
-  @apply h-64 w-full p-4;
+  @apply h-80 w-full p-4;
 }
 
 .swiper-slide {
   @apply flex items-center justify-center text-black object-cover;
 }
 
-.games-swiper-slider {
-  @apply max-w-44 max-h-44;
-}
-
-.MuiButtonBase-root {
-  p {
-    @apply text-white;
-  }
-}
-
-.wallet-button {
-  @apply !p-2 !px-4 text-white !bg-secondary hover:!bg-secondary-light !rounded shadow transition !text-sm;
-}
-
 .dice-game > button {
-  @apply !bg-transparent
-}
-
-.embla {
-  overflow-x: hidden;
-}
-.embla__container {
-  display: flex;
-  overflow-x: hidden;
-  max-width: calc(100vw - 2rem);
-}
-.embla__slide {
-  min-width: 0;
-  /* margin-right: 1rem; */
+  @apply !bg-transparent;
 }

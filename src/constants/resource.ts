@@ -1,4 +1,3 @@
-import { use } from "react";
 import { coin_flip } from "./testnet_data";
 
 export type ReturnType = `${string}::${string}::${string}`;
@@ -13,7 +12,7 @@ const resource = {
     play: (module_address: string): ReturnType =>
       `${module_address}::coin_flip::play_multiple`,
     user_rewards: (module_address: string, coin_address: string): ReturnType =>
-      `${module_address}::coin_flip::UserCoinRewards<${coin_address}>`,
+      `${module_address}::coin_flip::PlayerRewards<${coin_address}>`,
     claim: (module_address: string): ReturnType =>
       `${module_address}::coin_flip::claim`,
   },

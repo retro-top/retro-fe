@@ -35,7 +35,7 @@ export default function RootLayout({
         <RootLayoutProvider>
           <TopNavBar />
           <Sidebar />
-          <div className="overflow-y-scroll h-[calc(100vh-3.5rem)]">
+          <div className="overflow-y-scroll h-[calc(100vh-3.5rem)] max-w-[1318px] m-auto">
             <AnimateProvider>{children}</AnimateProvider>
             <Footer />
           </div>

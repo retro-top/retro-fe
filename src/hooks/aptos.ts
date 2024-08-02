@@ -23,7 +23,7 @@ const useAptosPlay = <T1, T2 extends {}>(game: ResourceType) => {
   const [accountHasList, setAccountHasList] = useState(false);
   const [reward, setReward] = useState<T2 | null>(null);
 
-  const { wallet, connected, signAndSubmitTransaction } = useWallet();
+  const { wallet, connected, account, signAndSubmitTransaction } = useWallet();
 
   // constant definination
   const MODULE_ADDRESS = (
@@ -84,7 +84,7 @@ const useAptosPlay = <T1, T2 extends {}>(game: ResourceType) => {
   const checkRewards = async () => {
     try {
       const resp = await aptos.getAccountResource<T2>({
-        accountAddress: MODULE_ADDRESS,
+        accountAddress: account?.address as string,
         resourceType: resource[game].user_rewards(
           MODULE_ADDRESS,
           SUPPORTED_COINS[0]

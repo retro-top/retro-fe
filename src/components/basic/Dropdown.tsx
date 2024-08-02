@@ -7,13 +7,16 @@ import React, {
 } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { FiAlertCircle } from "react-icons/fi";
 import Label from "./Label";
 
-interface DropdownProps {
+export interface BasicDropdownProps {
   options: string[] | React.ReactNode[];
-  onSelect: (optionIndex: number) => void;
+  onOptionSelect: (optionIndex: number) => void;
   defaultSelectedOption?: number;
+  dropdownSize?: "small" | "md";
+}
+
+interface DropdownProps extends BasicDropdownProps {
   placeholder?: string;
   maxHeight?: number;
   label?: string;
@@ -25,10 +28,11 @@ const Dropdown: React.FC<DropdownProps> = ({
   label = "",
   about = "",
   options,
-  onSelect,
+  onOptionSelect: onSelect,
   defaultSelectedOption = -1,
   placeholder = "Select an option",
   maxHeight = 200,
+  dropdownSize: size = "md",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<number>(
@@ -87,21 +91,35 @@ const Dropdown: React.FC<DropdownProps> = ({
     }
   }, [isOpen, maxHeight]);
 
+  const buttonClasses = `flex items-center justify-between w-full px-4 border bg-transparent hover:bg-gray-800 border-gray-800 rounded cursor-pointer ${
+    size === "small" ? "py-1 text-xs" : "py-2 text-sm"
+  }`;
+
+  const optionClasses = `px-4 cursor-pointer hover:bg-primary-light ${
+    size === "small" ? "py-1 text-xs" : "py-2 text-sm"
+  }`;
+
   return (
     <div className="relative w-full flex flex-col" ref={dropdownRef}>
       <Label about={about} label={label} />
       <button
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        className="flex items-center justify-between w-full px-4 py-2 border bg-transparent hover:bg-gray-800 border-gray-800 rounded cursor-pointer"
+        className={`${buttonClasses} ${
+          size === "small" ? "space-x-1" : "space-x-2"
+        }`}
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className="truncate text-sm">
+        <span className="truncate">
           {selectedOption !== -1
             ? memoizedOptions[selectedOption]
             : placeholder}
         </span>
-        {isOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
+        {isOpen ? (
+          <FaChevronUp size={size === "small" ? 10 : 12} />
+        ) : (
+          <FaChevronDown size={size === "small" ? 10 : 12} />
+        )}
       </button>
       <AnimatePresence>
         {isOpen && (
@@ -126,7 +144,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                 key={index}
                 role="option"
                 aria-selected={index === selectedOption}
-                className="px-4 py-2 cursor-pointer hover:bg-primary-light text-sm"
+                className={optionClasses}
                 onClick={() => handleSelect(index)}
               >
                 {option}

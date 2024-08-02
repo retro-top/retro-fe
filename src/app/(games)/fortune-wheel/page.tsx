@@ -22,10 +22,10 @@ const WheelOfFortunePage: React.FC = () => {
   const wheelRef = useRef<{ wheelRotate: () => void }>(null);
 
   const handlePlayClick = async () => {
-    // const gameResponse = await triggerGame();
+    const gameResponse = await triggerGame();
 
-    // console.log(gameResponse);
-    wheelRef.current?.wheelRotate();
+    console.log(gameResponse);
+    // wheelRef.current?.wheelRotate();
   };
 
   const handleClaimRewards = async () => {
@@ -41,7 +41,7 @@ const WheelOfFortunePage: React.FC = () => {
           <p>{reward?.coin.value}</p>
           <Dropdown
             options={CHANCES_OPTIONS}
-            onSelect={(opt) => {
+            onOptionSelect={(opt) => {
               changeGameArguments(CHANCES_OPTIONS[opt], 0);
               console.log(gameArguments);
             }}

@@ -8,9 +8,10 @@ import Game from "@/components/Game";
 import Select from "@/components/basic/Select";
 import { CoinTossRef } from "@/components/game/coin-toss/Coin";
 import Main from "@/components/basic/Main";
-import Input from "@/components/basic/Input";
 import { validateNumberString } from "@/utils/alert";
 import { useToast } from "@/components/basic/Toast";
+import InputOptions from "@/components/basic/InputOptions";
+import Label from "@/components/basic/Label";
 
 type Answer = 0 | 1;
 
@@ -46,7 +47,7 @@ const Page = () => {
       configData?.max_bet_amount_heads
     );
 
-    if(validate.error) {
+    if (validate.error) {
       addToast(validate.error, "error");
       return;
     }
@@ -78,19 +79,30 @@ const Page = () => {
     <Main>
       <Game.Root game={GAME_ID}>
         <Game.Sidebar>
-          <Input
+          {/* Pick Your Side */}
+          <Select
+            options={["HEAD", "TAIL"]} //add icon
+            onOptionSelect={(opt) => {
+              changeGameArguments(opt, 0);
+            }}
+            defaultSelectedOption={parseInt(gameArguments[0])}
+          />
+          <InputOptions
             value={gameArguments[1]}
-            onChange={(e) => changeGameArguments(e.target.value, 1)}
+            onChange={(e: any) => changeGameArguments(e.target.value, 1)}
             type="number"
             placeholder="Enter the Amount"
             label="Amount"
             about={`Enter the amount you want to bet Min: ${configData?.min_bet_amount_heads}\n Max: ${configData?.max_bet_amount_heads}`}
             alert={alert}
+            options={['APT', 'GUI', 'ZAAP']}
+            onOptionSelect={() => {}}
+            defaultSelectedOption={0}
           />
 
           <Dropdown
             options={CHANCES_OPTIONS}
-            onSelect={(opt) => {
+            onOptionSelect={(opt) => {
               changeGameArguments(CHANCES_OPTIONS[opt], 2);
               console.log(gameArguments);
             }}
@@ -98,15 +110,8 @@ const Page = () => {
             label="Chances"
             about="Select the number of chances you want to play"
           />
-          <Select
-            options={["GUI", "ZAAP"]}
-            onSelect={(opt) => {
-              changeGameArguments(opt, 0);
-            }}
-            defaultSelectedOption={parseInt(gameArguments[0])}
-          />
           <button onClick={handlePlayClick}>Flip Coin</button>
-          <p>{String(reward?.rewards_balance)}</p>
+          <p>{String(reward?.rewards_balance.value)}</p>
           <button onClick={handleClaimRewards}>Claim Rewards</button>
         </Game.Sidebar>
         <Game.UI>

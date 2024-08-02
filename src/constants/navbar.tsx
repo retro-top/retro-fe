@@ -15,9 +15,14 @@ const homeOptions = [
     href: "/leaderboard",
     icon: <MdOutlineLeaderboard />,
   },
+  // {
+  //   name: "Daily Claim",
+  //   href: "/daily-claim",
+  //   icon: <BiSolidOffer />,
+  // },
   {
-    name: "Daily Claim",
-    href: "/daily-claim",
+    name: "Airdrop",
+    href: "/airdrop",
     icon: <BiSolidOffer />,
   },
 ];
@@ -33,11 +38,11 @@ export const socialOptions = [
     href: "/telegram",
     icon: <FaTelegram />,
   },
-  {
-    name: "Discord",
-    href: "/discord",
-    icon: <FaDiscord />,
-  },
+  // {
+  //   name: "Discord",
+  //   href: "/discord",
+  //   icon: <FaDiscord />,
+  // },
 ];
 
 const otherOptions = [
@@ -55,12 +60,16 @@ const otherOptions = [
 
 const navbars = [
   {
-    heading: "Home",
+    heading: "Dashboard",
     options: homeOptions,
+    expantion: false,
+    expantionState: true,
     sitemapPriority: 1,
   },
   {
     heading: "Games",
+    expantion: true,
+    expantionState: false,
     options: games.map((item) => {
       return {
         name: item.name,
@@ -73,13 +82,19 @@ const navbars = [
   {
     heading: "Socials",
     options: socialOptions,
+    expantion: false,
+    expantionState: true,
     sitemapPriority: 0,
   },
   {
     heading: "Others",
     options: otherOptions,
+    expantion: false,
+    expantionState: true,
     sitemapPriority: 0.5,
   },
 ];
+
+export const expantionState = navbars.map(item => item.expantionState)
 
 export default navbars;

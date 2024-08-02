@@ -46,7 +46,7 @@ const Page = () => {
           <p>{reward?.rewards_balance.value}</p>
           <Dropdown
             options={CHANCES_OPTIONS}
-            onSelect={(opt) => {
+            onOptionSelect={(opt) => {
               changeGameArguments(CHANCES_OPTIONS[opt], 1);
             }}
             defaultSelectedOption={0}

@@ -6,7 +6,7 @@ const footer = [
     heading: "Support",
     options: [
       { text: "Support", href: "/support/live" },
-      { text: "Request Games", href: "/support/help-center" },
+      // { text: "Request Games", href: "/support/help-center" },
       { text: "Game Responsibly", href: "/support/game-responsibly" },
     ],
   },

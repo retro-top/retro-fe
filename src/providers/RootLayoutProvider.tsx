@@ -5,16 +5,30 @@ import { PetraWallet } from "petra-plugin-wallet-adapter";
 import { AptosWalletAdapterProvider } from "@aptos-labs/wallet-adapter-react";
 import { ToastProvider } from "@/components/basic/Toast";
 import { create } from "zustand";
+import Modal from "@/components/basic/Modal";
+import DailyClaim from "@/components/DailyClaim";
+interface ModalStore {
+  isDailyClaimModalOpen: boolean;
+  openDailyClaimModal: () => void;
+  closeDailyClaimModal: () => void;
+}
 
-type NavStore = {
-  count: number;
-  inc: () => void;
-};
-
-export const useNavStore = create<NavStore>()((set) => ({
-  count: 1,
-  inc: () => set((state) => ({ count: state.count + 1 })),
+export const useDailyClaimModalStore = create<ModalStore>((set) => ({
+  isDailyClaimModalOpen: false,
+  openDailyClaimModal: () => set({ isDailyClaimModalOpen: true }),
+  closeDailyClaimModal: () => set({ isDailyClaimModalOpen: false }),
 }));
+
+const DailyClaimModal = () => {
+  const { isDailyClaimModalOpen, closeDailyClaimModal } =
+    useDailyClaimModalStore();
+
+  return (
+    <Modal isOpen={isDailyClaimModalOpen} onClose={closeDailyClaimModal}>
+      <DailyClaim />
+    </Modal>
+  );
+};
 
 const RootLayoutProvider = ({ children }: { children: React.ReactNode }) => {
   const wallets = [new PetraWallet()];
@@ -23,6 +37,7 @@ const RootLayoutProvider = ({ children }: { children: React.ReactNode }) => {
     <ToastProvider>
       <AptosWalletAdapterProvider plugins={wallets} autoConnect={true}>
         {children}
+        <DailyClaimModal />
       </AptosWalletAdapterProvider>
     </ToastProvider>
   );

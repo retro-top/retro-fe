@@ -84,7 +84,7 @@ const Page = () => {
           />
           <Dropdown
             options={CHANCES_OPTIONS}
-            onSelect={(opt) => {
+            onOptionSelect={(opt) => {
               changeGameArguments(opt, 4);
             }}
             defaultSelectedOption={0}

@@ -3,13 +3,25 @@
 import React, { useState, useCallback } from "react";
 import { RiSearchLine, RiGift2Line } from "react-icons/ri";
 import { FiMenu } from "react-icons/fi";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import NavButton from "../NavButton";
 import MobileDrawer from "./MobileDrawer";
-import navbars from "@/constants/navbar";
+import navbars, { expantionState } from "@/constants/navbar";
+import { FaChevronDown } from "react-icons/fa";
 
 const Sidebar: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+  const [expandedSections, setExpandedSections] = useState<boolean[]>(
+    new Array(navbars.length).fill(true)
+  );
+
+  const toggleSection = (index: number) => {
+    setExpandedSections((prev) => {
+      const newState = [...prev];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
 
   const toggleDrawer = useCallback(() => {
     setIsDrawerOpen((prev) => !prev);
@@ -31,31 +43,52 @@ const Sidebar: React.FC = () => {
             }`}
             key={navbarIndex}
           >
-            <h1 className="text-sm font-semibold pb-2 select-none">
-              {navbar.heading}
-            </h1>
-            <div className="space-y-1">
-              {navbar.options.map((item, index) => {
-                return (
-                  <NavButton
-                    icon={item.icon}
-                    name={item.name}
-                    href={item.href}
-                    key={index}
-                  />
-                );
-              })}
+            <div
+              className={`flex justify-between items-center rounded md:p-1 transition cursor-pointer`}
+              onClick={() => navbar.expantion && toggleSection(navbarIndex)}
+            >
+              <h1 className="text-sm font-semibold select-none">
+                {navbar.heading}
+              </h1>
+              <motion.div
+                animate={{ rotate: expandedSections[navbarIndex] ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {navbar.expantion && (
+                  <FaChevronDown size={10} className="hidden md:block" />
+                )}
+              </motion.div>
             </div>
+            <AnimatePresence>
+              {expandedSections[navbarIndex] && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-1 overflow-hidden mt-2"
+                >
+                  {navbar.options.map((item, index) => (
+                    <NavButton
+                      icon={item.icon}
+                      name={item.name}
+                      href={item.href}
+                      key={index}
+                    />
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         ))}
       </>
     ),
-    []
+    [navbars, expandedSections]
   );
 
   return (
     <>
-      <nav className="hidden md:block float-left pt-0 text-white h-[calc(100vh-3.5rem)] max-w-[280px] md:border-r border-gray-800 bg-primary-light overflow-y-scroll">
+      <nav className="hidden md:block md:min-w-[195px] float-left pt-0 text-white h-[calc(100vh-3.5rem)] max-w-[280px] md:border-r border-gray-800 bg-primary-light overflow-y-scroll">
         {renderNavContent()}
       </nav>
 

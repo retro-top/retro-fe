@@ -1,15 +1,21 @@
-'use client'
+"use client";
 
 import React, { useState, useEffect } from "react";
 
-interface SelectProps {
+export interface SelectProps {
   options: string[] | React.ReactNode[];
-  onSelect: (optionIndex: number) => void;
+  onOptionSelect: (optionIndex: number) => void;
   defaultSelectedOption?: number;
 }
 
-const Select: React.FC<SelectProps> = ({ options, onSelect, defaultSelectedOption = -1 }) => {
-  const [selectedIndex, setSelectedIndex] = useState<number>(defaultSelectedOption);
+const Select: React.FC<SelectProps> = ({
+  options,
+  onOptionSelect: onSelect,
+  defaultSelectedOption = -1,
+}) => {
+  const [selectedIndex, setSelectedIndex] = useState<number>(
+    defaultSelectedOption
+  );
 
   useEffect(() => {
     if (defaultSelectedOption !== -1) {
@@ -29,7 +35,9 @@ const Select: React.FC<SelectProps> = ({ options, onSelect, defaultSelectedOptio
         <div
           key={index}
           className={`p-2 border border-gray-800 rounded cursor-pointer transition h-full ${
-            index === selectedIndex ? "bg-gray-800 text-white" : "hover:bg-gray-900"
+            index === selectedIndex
+              ? "bg-gray-800 text-white"
+              : "hover:bg-gray-900"
           }`}
           onClick={() => handleSelect(index)}
         >
