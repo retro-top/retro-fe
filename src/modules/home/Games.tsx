@@ -15,9 +15,10 @@ interface Game {
 interface GameCardProps {
   game: Game;
   onClick: () => void;
+  size: number;
 }
 
-const GameCard: React.FC<GameCardProps> = React.memo(({ game, onClick }) => (
+const GameCard: React.FC<GameCardProps> = React.memo(({ game, onClick, size }) => (
   <motion.div
     className="relative w-full overflow-hidden rounded-lg shadow-lg"
     initial={{ opacity: 0, y: 20 }}
@@ -30,9 +31,9 @@ const GameCard: React.FC<GameCardProps> = React.memo(({ game, onClick }) => (
       alt={game.name}
       src={game.poster}
       className="w-full h-auto"
-      height={120}
-      width={120}
-      quality={85}
+      height={size}
+      width={size}
+      quality={90}
       priority
     />
   </motion.div>
@@ -43,19 +44,21 @@ GameCard.displayName = "GameCard";
 const Game = ({
   dailyRewards = true,
   heading,
+  size = 120,
 }: {
   dailyRewards?: boolean;
   heading: string;
+  size?: number
 }) => {
   const router = useRouter();
   const pathname = usePathname();
 
   return (
     <section>
-      <h3>{heading}</h3>
+      <h1>{heading}</h1>
       <div
         className="grid gap-3"
-        style={{ gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))" }}
+        style={{ gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))" }}
       >
         {dailyRewards && (
           <GameCard
@@ -65,6 +68,7 @@ const Game = ({
               href: "",
             }}
             onClick={() => {}}
+            size={size}
           />
         )}
         {games.map(
@@ -74,6 +78,7 @@ const Game = ({
                 key={game.href}
                 game={game}
                 onClick={() => router.push(game.href)}
+                size={size}
               />
             )
         )}

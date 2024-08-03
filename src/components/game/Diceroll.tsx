@@ -1,33 +1,27 @@
-import React, {
-  useRef,
-  useImperativeHandle,
-  forwardRef,
-  useState,
-  useEffect,
-} from "react";
+import React, { useState } from "react";
 import MagneticSlider from "../MagnetSlider";
 import Input from "../basic/Input";
 
-export interface DiceRollRef {
-  updateDiceValues: (value1: number, value2: number) => void;
+interface DicerollProps {
+  onChange: (chance: number) => void;
 }
 
-interface DiceRef {
-  rollDice: (value?: number) => void;
-}
-
-const Diceroll = forwardRef<DiceRollRef, {}>((props, ref) => {
+const Diceroll: React.FC<DicerollProps> = ({ onChange }) => {
   const [values, setValues] = useState([
-    { val: 50.00000, label: "Win Change" },
-    { val: 50.00000, label: "Roll Over" },
-    { val: 2.00000, label: "Multiplier" },
+    { val: 50.0, label: "Win Change" },
+    { val: 50.0, label: "Roll Over" },
+    { val: 2.0, label: "Multiplier" },
   ]);
 
   const handleChange = (index: number, newValue: number) => {
     let updatedValues: [number, number, number];
     switch (index) {
       case 0:
-        updatedValues = [newValue, 100 - newValue, Math.floor(100 / (100 - newValue))];
+        updatedValues = [
+          newValue,
+          100 - newValue,
+          Math.floor(100 / (100 - newValue)),
+        ];
         break;
       case 1:
         updatedValues = [100 - newValue, newValue, 100 / newValue];
@@ -44,6 +38,7 @@ const Diceroll = forwardRef<DiceRollRef, {}>((props, ref) => {
         label: values[i].label,
       }))
     );
+    onChange(values[0].val);
   };
 
   return (
@@ -72,8 +67,6 @@ const Diceroll = forwardRef<DiceRollRef, {}>((props, ref) => {
       </div>
     </div>
   );
-});
-
-Diceroll.displayName = "Diceroll";
+};
 
 export default Diceroll;

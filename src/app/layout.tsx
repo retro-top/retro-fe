@@ -7,9 +7,6 @@ import RootLayoutProvider from "@/providers/RootLayoutProvider";
 import Footer from "@/components/footer/Footer";
 import AnimateProvider from "@/providers/AnimateProvider";
 import "./globals.css";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 
 const font = DisplayFont({
   subsets: ["latin"],
@@ -35,7 +32,7 @@ export default function RootLayout({
         <RootLayoutProvider>
           <TopNavBar />
           <Sidebar />
-          <div className="overflow-y-scroll h-[calc(100vh-3.5rem)] max-w-[1318px] m-auto">
+          <div className="overflow-y-scroll h-[calc(100vh-4rem)]">
             <AnimateProvider>{children}</AnimateProvider>
             <Footer />
           </div>

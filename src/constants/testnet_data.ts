@@ -1,11 +1,12 @@
 export const dice_roll = {
   module_address:
-    "0xd21c40d0c0138f5e2904488c40ae5f01be47ba5a365f7412f53f146bd99cba04",
+    "0x2ad6df6efb64f7a13ebc13f4f93a03c857b8d432ee74c62dc21da24eebd78402",
   resource_address:
-    "0xdc26aba16290b37fe7fbf1f5d2f75525e3bdb899dab3c86083e668ca18d160c0",
+    "0x919819eb61ceb97077fec537a23301e95773061e0eb894851bc782c14e36e1d9",
   supported_coins: [
     {
-      coin_address: "0x1::aptos_coin::AptosCoin",
+      coin_address:
+        "0xa9d210b09c69d13d8b4dabb9a95cf1f52f9749c62fd7d4561b5c3591609b42e8::GUI::GUI",
       decimals: 8,
     },
   ],

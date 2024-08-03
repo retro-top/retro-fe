@@ -2,10 +2,9 @@
 
 import { useRef, useState } from "react";
 import Game from "@/components/Game";
-import DiceRoll, { type DiceRollRef } from "@/components/game/Diceroll";
+import DiceRoll from "@/components/game/Diceroll";
 import usePlay from "@/hooks/game";
 import Dropdown from "@/components/basic/Dropdown";
-import { dice_roll_arguments } from "@/constants/default_value";
 import Main from "@/components/basic/Main";
 import Input from "@/components/basic/Input";
 import { validateNumberString } from "@/utils/alert";
@@ -18,8 +17,6 @@ const GAME_ID = "dice_roll";
 
 const Page = () => {
   const { addToast } = useToast();
-  const [alert, setAlert] = useState<string>("");
-  const dicerollRef = useRef<DiceRollRef>(null);
   const {
     configData,
     gameArguments,
@@ -27,7 +24,7 @@ const Page = () => {
     triggerGame,
     reward,
     claimRewards,
-  } = usePlay(GAME_ID, dice_roll_arguments);
+  } = usePlay(GAME_ID, [50, ["1000000000", "1000000000"], 2]);
 
   const handlePlayClick = async () => {
     if (!configData) {
@@ -46,7 +43,7 @@ const Page = () => {
     }
 
     if (validate.warning) {
-      setAlert(validate.warning);
+      addToast(validate.warning, "error");
       return;
     }
 
@@ -57,10 +54,7 @@ const Page = () => {
     if (gameResponse.length > 0 && gameResponse[0].data) {
       const result = gameResponse[0].data;
 
-      dicerollRef.current?.updateDiceValues(
-        parseInt(result.dice_one_value),
-        parseInt(result.dice_two_value)
-      );
+      console.log("Game Result", result);
     }
   };
 
@@ -76,7 +70,7 @@ const Page = () => {
         <Game.Sidebar>
           <Input
             value={gameArguments[3]}
-            onChange={(e) => changeGameArguments(e.target.value, 3)}
+            onChange={(e) => {}}
             type="number"
             placeholder="Enter the Amount"
             label="Amount"
@@ -85,18 +79,20 @@ const Page = () => {
           <Dropdown
             options={CHANCES_OPTIONS}
             onOptionSelect={(opt) => {
-              changeGameArguments(opt, 4);
+              changeGameArguments(opt, 2);
             }}
             defaultSelectedOption={0}
             label="Chances"
-            about="Number of chances to win"
+            about="Number of Rolls"
           />
           <button onClick={handlePlayClick}>Play</button>
           <p>{reward?.rewards_balance.value}</p>
           <button onClick={handleClaimRewards}>Claim Rewards</button>
         </Game.Sidebar>
         <Game.UI>
-          <DiceRoll ref={dicerollRef} />
+          <DiceRoll
+            onChange={(val) => changeGameArguments(val, 0)}
+          />
         </Game.UI>
       </Game.Root>
     </Main>

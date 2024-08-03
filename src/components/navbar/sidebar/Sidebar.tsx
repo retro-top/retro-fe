@@ -6,10 +6,14 @@ import { FiMenu } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
 import NavButton from "../NavButton";
 import MobileDrawer from "./MobileDrawer";
-import navbars, { expantionState } from "@/constants/navbar";
+import navbars from "@/constants/navbar";
 import { FaChevronDown } from "react-icons/fa";
+import { useDailyClaimModalStore } from "@/providers/RootLayoutProvider";
+import BottomBarButton from "./BottomBarButton";
 
 const Sidebar: React.FC = () => {
+  const { openDailyClaimModal } = useDailyClaimModalStore();
+
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [expandedSections, setExpandedSections] = useState<boolean[]>(
     new Array(navbars.length).fill(true)
@@ -30,7 +34,11 @@ const Sidebar: React.FC = () => {
   const navItems = [
     { name: "Menu", icon: FiMenu, onclick: () => toggleDrawer() },
     { name: "Search", icon: RiSearchLine, onclick: () => {} },
-    { name: "Rewards", icon: RiGift2Line, onclick: () => {} },
+    {
+      name: "Daily Rewards",
+      icon: RiGift2Line,
+      onclick: () => openDailyClaimModal(),
+    },
   ];
 
   const renderNavContent = useCallback(
@@ -88,21 +96,14 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      <nav className="hidden md:block md:min-w-[195px] float-left pt-0 text-white h-[calc(100vh-3.5rem)] max-w-[280px] md:border-r border-gray-800 bg-primary-light overflow-y-scroll">
+      <nav className="hidden md:block md:min-w-[195px] float-left pt-0 text-white h-[calc(100vh-4rem)] max-w-[280px] md:border-r border-gray-800 bg-primary-light overflow-y-scroll">
         {renderNavContent()}
       </nav>
 
       <nav className="md:hidden fixed bottom-0 left-0 right-0 shadow-lg z-50 bg-primary">
         <div className="flex justify-around items-center h-16">
           {navItems.map((item, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center justify-center w-full"
-              onClick={item.onclick}
-            >
-              <item.icon className="text-2xl text-gray-600" size={16} />
-              <span className="text-xs mt-1 text-gray-600">{item.name}</span>
-            </div>
+            <BottomBarButton item={item} key={index} />
           ))}
         </div>
       </nav>

@@ -6,7 +6,7 @@ const Page = () => {
   return (
     <main className="space-y-4">
       <HomeSwiper />
-      <Games heading="Our Games" />
+      <Games heading="Retro Originals" size={150} />
     </main>
   );
 };

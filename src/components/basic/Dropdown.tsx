@@ -95,7 +95,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     size === "small" ? "py-1 text-xs" : "py-2 text-sm"
   }`;
 
-  const optionClasses = `px-4 cursor-pointer hover:bg-primary-light ${
+  const optionClasses = `px-4 cursor-pointer list-none hover:bg-primary-light ${
     size === "small" ? "py-1 text-xs" : "py-2 text-sm"
   }`;
 
