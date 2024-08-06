@@ -96,7 +96,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      <nav className="hidden md:block md:min-w-[195px] float-left pt-0 text-white h-[calc(100vh-4rem)] max-w-[280px] md:border-r border-gray-800 bg-primary-light overflow-y-scroll">
+      <nav className="desktop-sidebar float-left pt-0 text-white hidden md:block md:border-r border-gray-800 bg-primary-light overflow-y-scroll">
         {renderNavContent()}
       </nav>
 

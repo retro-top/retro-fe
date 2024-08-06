@@ -11,8 +11,10 @@ const config: Config = {
       colors: {
         primary: "#080808",
         "primary-light": "#121418",
+        "primary-lighter": "#24262a",
         secondary: "#886cff",
         "secondary-light": "#a08aff",
+        "secondary-lighter": "#b8a8ff",
       },
     },
   },

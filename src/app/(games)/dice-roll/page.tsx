@@ -24,7 +24,20 @@ const Page = () => {
     triggerGame,
     reward,
     claimRewards,
-  } = usePlay(GAME_ID, [50, ["1000000000", "1000000000"], 2]);
+  } = usePlay(GAME_ID, [
+    50,
+    [
+      "100000000000",
+      "100000000000",
+      "100000000000",
+      "100000000000",
+      "100000000000",
+      "100000000000",
+      "100000000000",
+      "100000000000",
+    ],
+    1,
+  ]);
 
   const handlePlayClick = async () => {
     if (!configData) {
@@ -68,29 +81,34 @@ const Page = () => {
     <Main>
       <Game.Root game={GAME_ID}>
         <Game.Sidebar>
-          <Input
-            value={gameArguments[3]}
-            onChange={(e) => {}}
-            type="number"
-            placeholder="Enter the Amount"
-            label="Amount"
-            about="Amount to bet"
-          />
           <Dropdown
             options={CHANCES_OPTIONS}
             onOptionSelect={(opt) => {
-              changeGameArguments(opt, 2);
+              changeGameArguments(CHANCES_OPTIONS[opt], 2);
             }}
             defaultSelectedOption={0}
             label="Chances"
             about="Number of Rolls"
           />
+          {Array.from({ length: gameArguments[2] }).map((_, index: number) => (
+            <Input
+              value={gameArguments[1]}
+              onChange={(e) => {}}
+              type="number"
+              placeholder="Enter the Amount"
+              label="Amount"
+              about="Amount to bet"
+              key={index}
+            />
+          ))}
+
           <button onClick={handlePlayClick}>Play</button>
           <p>{reward?.rewards_balance.value}</p>
           <button onClick={handleClaimRewards}>Claim Rewards</button>
         </Game.Sidebar>
         <Game.UI>
           <DiceRoll
+            value={gameArguments[0]}
             onChange={(val) => changeGameArguments(val, 0)}
           />
         </Game.UI>

@@ -1,45 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import MagneticSlider from "../MagnetSlider";
-import Input from "../basic/Input";
+import Input from "@/components/basic/Input";
 
 interface DicerollProps {
+  value: number;
   onChange: (chance: number) => void;
 }
 
-const Diceroll: React.FC<DicerollProps> = ({ onChange }) => {
-  const [values, setValues] = useState([
-    { val: 50.0, label: "Win Change" },
-    { val: 50.0, label: "Roll Over" },
-    { val: 2.0, label: "Multiplier" },
-  ]);
+const Diceroll: React.FC<DicerollProps> = ({
+  value: initialChance = 50.0,
+  onChange,
+}) => {
+  const [chance, setChance] = useState(initialChance);
 
-  const handleChange = (index: number, newValue: number) => {
-    let updatedValues: [number, number, number];
-    switch (index) {
-      case 0:
-        updatedValues = [
-          newValue,
-          100 - newValue,
-          Math.floor(100 / (100 - newValue)),
-        ];
-        break;
-      case 1:
-        updatedValues = [100 - newValue, newValue, 100 / newValue];
-        break;
-      case 2:
-        updatedValues = [100 - 100 / newValue, 100 / newValue, newValue];
-        break;
-      default:
-        return;
-    }
-    setValues(
-      updatedValues.map((v, i) => ({
-        val: Number(v.toFixed(2)),
-        label: values[i].label,
-      }))
-    );
-    onChange(values[0].val);
-  };
+  const calculateValues = useCallback((newChance: number) => {
+    const winChance = Number(newChance.toFixed(2));
+    const rollOver = Number((100 - winChance).toFixed(2));
+    const multiplier = Number((100 / rollOver).toFixed(2));
+    return { winChance, rollOver, multiplier };
+  }, []);
+
+  const { winChance, rollOver, multiplier } = calculateValues(chance);
+
+  const handleChange = useCallback(
+    (index: number, newValue: number) => {
+      let newChance: number;
+      switch (index) {
+        case 0: // Win Chance
+          newChance = newValue;
+          break;
+        case 1: // Roll Over
+          newChance = 100 - newValue;
+          break;
+        case 2: // Multiplier
+          newChance = 100 - 100 / newValue;
+          break;
+        default:
+          return;
+      }
+      setChance(newChance);
+      onChange(newChance);
+    },
+    [onChange]
+  );
 
   return (
     <div className="flex flex-col gap-8 dice-game">
@@ -49,19 +52,23 @@ const Diceroll: React.FC<DicerollProps> = ({ onChange }) => {
         min={0}
         max={100}
         onChange={(val) => handleChange(1, val)}
-        value={values[1].val}
+        value={rollOver}
       />
       <div className="grid md:grid-cols-3 gap-2">
-        {values.map((value, index) => (
+        {[
+          { label: "Win Chance", value: winChance },
+          { label: "Roll Over", value: rollOver },
+          { label: "Multiplier", value: multiplier },
+        ].map(({ label, value }, index) => (
           <Input
             type="number"
-            label={value.label}
-            value={value.val}
+            label={label}
+            value={value}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleChange(index, Number(e.target.value))
             }
             className="ml-2 p-1 border rounded"
-            key={index}
+            key={label}
           />
         ))}
       </div>

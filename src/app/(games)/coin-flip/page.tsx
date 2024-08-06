@@ -86,6 +86,7 @@ const Page = () => {
               changeGameArguments(opt, 0);
             }}
             defaultSelectedOption={parseInt(gameArguments[0])}
+            label="Pick Your Side"
           />
           <InputOptions
             value={gameArguments[1]}
@@ -95,7 +96,7 @@ const Page = () => {
             label="Amount"
             about={`Enter the amount you want to bet Min: ${configData?.min_bet_amount_heads}\n Max: ${configData?.max_bet_amount_heads}`}
             alert={alert}
-            options={['APT', 'GUI', 'ZAAP']}
+            options={["APT", "GUI", "ZAAP"]}
             onOptionSelect={() => {}}
             defaultSelectedOption={0}
           />
@@ -111,8 +112,14 @@ const Page = () => {
             about="Select the number of chances you want to play"
           />
           <button onClick={handlePlayClick}>Flip Coin</button>
-          <p>{String(reward?.rewards_balance.value)}</p>
-          <button onClick={handleClaimRewards}>Claim Rewards</button>
+          {reward && reward.rewards_balance.value !== 0 && (
+            <Game.SideBottom>
+              <p>{String(reward?.rewards_balance.value)}</p>
+              <button onClick={handleClaimRewards} className="claim-reward">
+                Claim Rewards
+              </button>
+            </Game.SideBottom>
+          )}
         </Game.Sidebar>
         <Game.UI>
           <CoinToss

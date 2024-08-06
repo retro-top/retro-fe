@@ -27,16 +27,18 @@ const GameRoot: React.FC<RootProps> = ({
       </div>
       {game && <GameHeading heading={game_heading[game]} />}
     </section>
-    {listGames && (
-      <GameList dailyRewards={!listGames} heading="More Games" />
-    )}
+    {listGames && <GameList dailyRewards={!listGames} heading="More Games" />}
   </>
 );
 
 const GameSidebar: React.FC<Props> = ({ children }) => (
-  <aside className="flex flex-col space-y-4 flex-1 md:min-w-[13rem] md:max-w-[18rem] border-t md:border-t-0 md:border-r border-gray-800 p-4">
-    {children}
+  <aside className="flex flex-col justify-between md:min-w-[15rem] md:max-w-[18rem] border-t md:border-t-0 md:border-r border-gray-800 p-4">
+    <div className="flex flex-col space-y-4 flex-1">{children}</div>
   </aside>
+);
+
+const GameSideBottom: React.FC<Props> = ({ children }) => (
+  <div className="p-2 border border-gray-800 rounded flex flex-col gap-4">{children}</div>
 );
 
 const GameUI: React.FC<Props> = ({ children }) => (
@@ -57,6 +59,7 @@ const GameHeading: React.FC<HeadingProps> = ({ heading }) => {
 const Game = {
   Root: GameRoot,
   Sidebar: GameSidebar,
+  SideBottom: GameSideBottom,
   UI: GameUI,
 };
 

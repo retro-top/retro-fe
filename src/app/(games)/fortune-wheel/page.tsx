@@ -38,7 +38,6 @@ const WheelOfFortunePage: React.FC = () => {
     <Main>
       <Game.Root game={GAME_ID}>
         <Game.Sidebar>
-          <p>{reward?.coin.value}</p>
           <Dropdown
             options={CHANCES_OPTIONS}
             onOptionSelect={(opt) => {
@@ -53,6 +52,14 @@ const WheelOfFortunePage: React.FC = () => {
             Spin
           </button>
           <button onClick={handleClaimRewards}>Claim Rewards</button>
+          {reward && reward.coin.value !== 0 && (
+            <Game.SideBottom>
+              <p>{String(reward?.coin.value)}</p>
+              <button onClick={handleClaimRewards} className="claim-reward">
+                Claim Rewards
+              </button>
+            </Game.SideBottom>
+          )}
         </Game.Sidebar>
         <Game.UI>
           <WheelOfFortune ref={wheelRef} />

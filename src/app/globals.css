@@ -35,11 +35,11 @@ input[type="number"] {
   }
 
   main {
-    @apply p-4 space-y-4 min-h-[50vh] md:min-h-[80vh];
+    @apply p-4 lg:p-6 space-y-4 lg:space-y-8 min-h-[50vh] md:min-h-[80vh];
   }
 
   section {
-    @apply space-y-2 relative m-0;
+    @apply space-y-3 lg:space-y-4 relative m-0;
   }
 
   button {
@@ -103,8 +103,25 @@ input[type="number"] {
   }
 }
 
+footer > div,
+main > section {
+  @apply max-w-[1318px] m-auto;
+}
+
+.nav-blank-space {
+  @apply md:w-[calc(100vw-1318px)];
+}
+
 .text-balance {
   text-wrap: balance;
+}
+
+.desktop-sidebar {
+  @apply md:min-w-[230px] h-[calc(100vh-4rem)] max-w-[280px];
+}
+
+.claim-reward {
+  @apply bg-amber-500 hover:bg-amber-600; 
 }
 
 img {
@@ -116,7 +133,7 @@ img {
 }
 
 .swiper {
-  @apply h-[180px] md:h-[200px]
+  @apply h-[180px] md:h-[200px] !pt-2;
 }
 
 .swiper-slide {

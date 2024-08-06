@@ -12,7 +12,6 @@ const Main = ({ children }: { children: React.ReactNode }) => (
       damping: 15,
       duration: 0.5,
     }}
-    className="max-w-[1318px] m-auto"
   >
     {children}
   </motion.main>

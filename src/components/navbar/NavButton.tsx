@@ -19,7 +19,9 @@ const NavButton: React.FC<NavButtonProps> = ({ icon, name, href }) => {
 
   return (
     <div
-      className={`rounded-lg transition ${isActive ? "text-secondary" : ""}`}
+      className={`rounded-lg transition ${
+        isActive ? "text-secondary" : "md:hover:text-secondary-lighter"
+      }`}
     >
       <motion.div
         whileHover={{ x: isActive ? 0 : 5 }}
