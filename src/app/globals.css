@@ -104,20 +104,16 @@ input[type="number"] {
 }
 
 footer > div,
-main > section {
+main > section, .nav-content {
   @apply max-w-[1318px] m-auto;
 }
 
-.nav-blank-space {
-  @apply md:w-[calc(100vw-1318px)];
+.desktop-sidebar  {
+  @apply md:min-w-[230px] h-[calc(100vh-4.5rem)] max-w-[280px];
 }
 
-.text-balance {
-  text-wrap: balance;
-}
-
-.desktop-sidebar {
-  @apply md:min-w-[230px] h-[calc(100vh-4rem)] max-w-[280px];
+.sidebar-width {
+ @apply hidden md:block w-[265px] p-4;
 }
 
 .claim-reward {

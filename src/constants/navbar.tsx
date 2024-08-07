@@ -12,16 +12,19 @@ const homeOptions = [
     name: "Home",
     href: "/",
     icon: <IoHomeOutline />,
+    active: true,
   },
   {
     name: "Leaderboard",
     href: "/leaderboard",
     icon: <MdOutlineLeaderboard />,
+    active: false,
   },
   {
     name: "Airdrop",
     href: "/airdrop",
     icon: <BiSolidOffer />,
+    active: false,
   },
 ];
 
@@ -30,11 +33,13 @@ export const socialOptions = [
     name: "X/Twitter",
     href: TWITTER_HREF,
     icon: <FaXTwitter />,
+    active: true,
   },
   {
     name: "Telegram",
     href: TELEGRAM_HREF,
     icon: <FaTelegram />,
+    active: true,
   },
   // {
   //   name: "Discord",
@@ -48,11 +53,13 @@ const otherOptions = [
     name: "Terms & Conditions",
     href: "/policy/terms",
     icon: <MdMenuBook />,
+    active: true,
   },
   {
     name: "Support",
     href: "/support/help-center",
     icon: <MdSupport />,
+    active: true,
   },
 ];
 
@@ -73,6 +80,7 @@ const navbars = [
         name: item.name,
         icon: item.icon,
         href: item.href,
+        active: item.active,
       };
     }),
     sitemapPriority: 0.7,

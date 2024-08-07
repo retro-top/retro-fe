@@ -9,7 +9,7 @@ import {
   useWallet,
   InputTransactionData,
 } from "@aptos-labs/wallet-adapter-react";
-import getNetwork from "../lib/network";
+import getNetwork from "@/lib/network";
 import { useToast } from "@/components/basic/Toast";
 
 const useAptosPlay = <T1, T2 extends {}>(game: ResourceType) => {

@@ -59,6 +59,7 @@ const HomeSwiper = () => {
                   alt={item.alt}
                   loading="lazy"
                   placeholder="blur"
+                  quality={95}
                   blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=="
                   fill
                 />

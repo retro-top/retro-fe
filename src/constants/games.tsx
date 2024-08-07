@@ -83,6 +83,11 @@ export const game_heading = {
     description:
       "Plinko is a thrilling game where players drop a disc from the top of a peg-filled board, watching it bounce and tumble to the bottom. The goal is to land the disc in the highest-scoring slot. Plinko combines luck and anticipation, making it a crowd favorite at carnivals and game shows.",
   },
+  nft_spin: {
+    title: "NFT Spin",
+    description:
+      "NFT Spin is an innovative game that combines digital art collectibles with chance. Players spin a virtual wheel featuring various NFT artworks. Landing on an NFT grants the player ownership of that unique digital asset. It's an exciting way to build an NFT collection while enjoying the thrill of a spin game.",
+  },
 };
 
 export const gameIds = games.map((game) => game.id);

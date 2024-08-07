@@ -81,6 +81,7 @@ const Sidebar: React.FC = () => {
                       icon={item.icon}
                       name={item.name}
                       href={item.href}
+                      active={item.active}
                       key={index}
                     />
                   ))}
@@ -96,7 +97,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      <nav className="desktop-sidebar float-left pt-0 text-white hidden md:block md:border-r border-gray-800 bg-primary-light overflow-y-scroll">
+      <nav className="desktop-sidebar float-left pt-0 text-white hidden md:block md:border-r border-gray-800 bg-primary-light md:bg-primary overflow-y-scroll">
         {renderNavContent()}
       </nav>
 

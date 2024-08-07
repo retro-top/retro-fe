@@ -47,12 +47,11 @@ const Diceroll: React.FC<DicerollProps> = ({
   return (
     <div className="flex flex-col gap-8 dice-game">
       <MagneticSlider
-        initialValue={50}
+        initialValue={rollOver}
         step={1}
         min={0}
         max={100}
         onChange={(val) => handleChange(1, val)}
-        value={rollOver}
       />
       <div className="grid md:grid-cols-3 gap-2">
         {[
@@ -67,7 +66,7 @@ const Diceroll: React.FC<DicerollProps> = ({
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleChange(index, Number(e.target.value))
             }
-            className="ml-2 p-1 border rounded"
+            className="p-1 border rounded"
             key={label}
           />
         ))}
