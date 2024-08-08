@@ -113,11 +113,19 @@ main > section, .nav-content {
 }
 
 .sidebar-width {
- @apply hidden md:block w-[265px] p-4;
+ @apply hidden md:block w-[18vw] max-w-[234px] p-4;
 }
 
 .claim-reward {
   @apply bg-amber-500 hover:bg-amber-600; 
+}
+
+.bordered-text {
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: #fff;
+  text-transform: uppercase;
+  overflow: hidden;
 }
 
 img {

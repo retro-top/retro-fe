@@ -6,7 +6,9 @@ import TopNavBar from "@/components/navbar/TopNavBar";
 import RootLayoutProvider from "@/providers/RootLayoutProvider";
 import Footer from "@/components/footer/Footer";
 import AnimateProvider from "@/providers/AnimateProvider";
+import DailyClaimModal from "@/modules/DailyClaimModal";
 import "./globals.css";
+import LoadingScreen from "@/modules/LoadingScreen";
 
 const font = DisplayFont({
   subsets: ["latin"],
@@ -26,9 +28,8 @@ export default function RootLayout({
   const google_analytics_id = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 
   return (
-    <html lang="en">
+    <html>
       <body className={`${font.className} bg-primary transition`}>
-        {google_analytics_id && <GoogleAnalytics gaId={google_analytics_id} />}
         <RootLayoutProvider>
           <TopNavBar />
           <Sidebar />
@@ -36,7 +37,10 @@ export default function RootLayout({
             <AnimateProvider>{children}</AnimateProvider>
             <Footer />
           </div>
+          <DailyClaimModal />
+          <LoadingScreen />
         </RootLayoutProvider>
+        {google_analytics_id && <GoogleAnalytics gaId={google_analytics_id} />}
       </body>
     </html>
   );

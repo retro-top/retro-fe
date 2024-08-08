@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import WalletConnector from "../WalletConnector";
-import { useDailyClaimModalStore } from "@/providers/RootLayoutProvider";
+import useDailyClaimModalStore from "@/store/daily-claim";
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import CasinoSports from "./CasinoSports";
 import Link from "next/link";

@@ -8,8 +8,8 @@ import NavButton from "../NavButton";
 import MobileDrawer from "./MobileDrawer";
 import navbars from "@/constants/navbar";
 import { FaChevronDown } from "react-icons/fa";
-import { useDailyClaimModalStore } from "@/providers/RootLayoutProvider";
 import BottomBarButton from "./BottomBarButton";
+import useDailyClaimModalStore from "@/store/daily-claim";
 
 const Sidebar: React.FC = () => {
   const { openDailyClaimModal } = useDailyClaimModalStore();
