@@ -63,7 +63,7 @@ const WheelOfFortune = forwardRef((props, ref) => {
         {colorWithValue.map((item, index) => {
           return (
             <div
-              className="px-3 py-2 text-white font-bold bg-primary border-0 rounded text-sm md:text-base"
+              className="px-3 py-2 text-white font-bold bg-primary border-0 rounded-sm text-sm md:text-base"
               style={{
                 borderBottom: `3px solid ${item.color}`,
               }}

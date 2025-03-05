@@ -51,7 +51,7 @@ const HomeSwiper = () => {
               className="absolute inset-0 overflow-hidden rounded-md"
             >
               <div
-                className="aspect-[2/1] w-full"
+                className="aspect-2/1 w-full"
                 onClick={() => router.push(item.href)}
               >
                 <Image

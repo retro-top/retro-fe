@@ -52,7 +52,7 @@ const Sidebar: React.FC = () => {
             key={navbarIndex}
           >
             <div
-              className={`flex justify-between items-center rounded md:p-1 transition cursor-pointer`}
+              className={`flex justify-between items-center rounded-sm md:p-1 transition cursor-pointer`}
               onClick={() => navbar.expantion && toggleSection(navbarIndex)}
             >
               <h1 className="text-sm font-semibold select-none">

@@ -66,7 +66,7 @@ const Diceroll: React.FC<DicerollProps> = ({
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleChange(index, Number(e.target.value))
             }
-            className="p-1 border rounded"
+            className="p-1 border rounded-sm"
             key={label}
           />
         ))}

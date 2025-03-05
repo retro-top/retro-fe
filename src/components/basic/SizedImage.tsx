@@ -14,7 +14,7 @@ interface SizedImageProps extends DivProps {
 const SizedImage: React.FC<SizedImageProps> = ({
   src,
   alt,
-  className = "h-[15rem] aspect-[3/4]",
+  className = "h-[15rem] aspect-3/4",
   imageClassName = "",
   noCorner = false,
 }) => {

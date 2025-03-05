@@ -8,13 +8,13 @@ const AirdropBanners = () => {
     <section className="flex gap-4 flex-col md:flex-row">
       <div className="relative">
         <SizedImage src={"/banners/estimation.webp"} alt="Welcome Banner" />
-        <span className="!text-7xl">
+        <span className="text-7xl!">
           $5000
         </span>
       </div>
       <div className="relative">
         <SizedImage src={"/banners/estimation.webp"} alt="Welcome Banner" />
-        <span className="!text-7xl">
+        <span className="text-7xl!">
           $5000
         </span>
       </div>

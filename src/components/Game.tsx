@@ -22,7 +22,7 @@ const GameRoot: React.FC<RootProps> = ({
 }) => (
   <>
     <section>
-      <div className="bg-primary-light min-h-[50vh] md:min-h-[75vh] p-4 rounded flex flex-col-reverse md:flex-row">
+      <div className="bg-primary-light min-h-[50vh] md:min-h-[75vh] p-4 rounded-sm flex flex-col-reverse md:flex-row">
         {children}
       </div>
       {game && <GameHeading heading={game_heading[game]} />}
@@ -38,18 +38,18 @@ const GameSidebar: React.FC<Props> = ({ children }) => (
 );
 
 const GameSideBottom: React.FC<Props> = ({ children }) => (
-  <div className="p-2 border border-gray-800 rounded flex flex-col gap-4">{children}</div>
+  <div className="p-2 border border-gray-800 rounded-sm flex flex-col gap-4">{children}</div>
 );
 
 const GameUI: React.FC<Props> = ({ children }) => (
-  <div className="p-4 rounded flex items-center justify-center flex-col-reverse md:flex-row flex-[2] min-h-[18rem] w-full">
+  <div className="p-4 rounded-sm flex items-center justify-center flex-col-reverse md:flex-row flex-2 min-h-[18rem] w-full">
     {children}
   </div>
 );
 
 const GameHeading: React.FC<HeadingProps> = ({ heading }) => {
   return (
-    <div className="bg-primary-light p-4 rounded">
+    <div className="bg-primary-light p-4 rounded-sm">
       <h1 className="text-base">{heading.title}</h1>
       <p>{heading.description}</p>
     </div>

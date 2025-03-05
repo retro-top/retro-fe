@@ -32,7 +32,7 @@ const Label: React.FC<LabelProps> = ({ label, about, ...props }) => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -10 }}
                   transition={{ duration: 0.1 }}
-                  className="absolute left-full top-0 ml-2 p-2 text-xs text-white bg-primary rounded shadow-lg z-10 min-w-40"
+                  className="absolute left-full top-0 ml-2 p-2 text-xs text-white bg-primary rounded-sm shadow-lg z-10 min-w-40"
                 >
                   {about}
                 </motion.div>

@@ -34,7 +34,7 @@ const DailyClaim = () => {
         <button 
           onClick={handleClaim} 
           disabled={claimed}
-          className="w-full p-2 bg-secondary hover:bg-secondary-light text-white rounded shadow transition text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full p-2 bg-secondary hover:bg-secondary-light text-white rounded-sm shadow-sm transition text-sm disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {claimed ? 'Claimed' : 'Claim Now'}
         </button>
